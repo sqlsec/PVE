@@ -1,0 +1,62 @@
+site_name: 国光的 PVE & Linux 生产力环境搭建教程
+site_url: https://pve.sqlsec.com
+site_author: 国光
+site_description: "国光的 PVE & Linux 生产力环境搭建教程"
+repo_name: sqlsec/PVE
+repo_url: https://github.com/sqlsec/PVE
+copyright: Copyright &copy;  国光
+theme:
+  name: material
+  custom_dir: overrides
+  font: false
+  language: zh
+  icon:
+    logo: fontawesome/brands/linux
+    repo: fontawesome/brands/git-alt
+  favicon: https://image.3001.net/images/20200922/16007336487809.jpg
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - search.suggest
+    - search.highlight
+    - search.share
+  palette:
+    # Toggle light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切换深色模式
+    # Toggle dark mode
+    - scheme: slate
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: 切换浅色模式
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      permalink: true
+plugins:
+  - git-revision-date
+  - search:
+      prebuild_index: true
+      lang:
+        - en
+        - ja
+edit_uri: edit/main/docs/
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/redhat
+      link: https://www.sqlsec.com
+      name: 国光
+nav:
+  - "index.md"
