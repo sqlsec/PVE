@@ -182,9 +182,51 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          系统选择
+          <span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
         系统选择
       </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    黑苹果
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pve">
+    PVE
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#esxi">
+    ESXi
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#unraid">
+    unRaid
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    总结
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+    参考
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../3/">
@@ -208,6 +250,42 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    黑苹果
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pve">
+    PVE
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#esxi">
+    ESXi
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#unraid">
+    unRaid
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    总结
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+    参考
+  </a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -217,9 +295,71 @@
 <a class="md-content__button md-icon" href="https://github.com/sqlsec/PVE/edit/main/docs/1/2.md" title="编辑此页">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<hr/>
 <h1 id="_1">系统选择<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
-<hr/>
+<h2 id="_2">黑苹果<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>这台机器也是支持物理机黑苹果的，国光我尝试安装成功过，但是有 1 个巨大的坑点：黑苹果对双路很多个 CPU  的支持不是很好，<strong>macOS 底层最大只支持 32核 64 线程的 CPU</strong>，所以我只能 BIOS 阉割 CPU 的数量才可以成功跑起来，所以最后的跑分也不是很强，但是图没有了，下面就上一下单路物理黑苹果的跑分情况吧：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">很多个框框</label><label for="__tabbed_1_2">R23 跑分</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693496273540.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693496273540.jpg"/></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693496388163.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693496388163.jpg"/></a> </p>
+</div>
+</div>
+</input></input></div>
+<p>因为得阉割 CPU 数量才可以跑物理黑苹果，这怎么能忍？所以这个物理黑苹果方案就首先排除掉了。</p>
+<h2 id="pve">PVE<a class="headerlink" href="#pve" title="Permanent link">¶</a></h2>
+<p>全称 Proxmox Virtual Environment，是基于 Debian 的 Linux 系统，虚拟机内核为 KVM。硬件兼容性优秀。Web UI 的界面功能不强，但是如果通过命令行去操作的话，扩展定制能力几乎是无限的。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693506848636.jpeg"><img alt="" src="https://image.3001.net/images/20221125/16693506848636.jpeg"/></a> </p>
+<h2 id="esxi">ESXi<a class="headerlink" href="#esxi" title="Permanent link">¶</a></h2>
+<p>是 VMWare vSphere Hypervisor 套件之下重要组件。前期依赖 Linux 源码，后来抛弃 Linux 做成了ESXi。很成熟的商业产品，界面清晰易用，但对家用硬件的兼容性较差（主要面向商业服务器），扩展可定制程度不高。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/166935076114.png"><img alt="" src="https://image.3001.net/images/20221125/166935076114.png"/></a> </p>
+<h2 id="unraid">unRaid<a class="headerlink" href="#unraid" title="Permanent link">¶</a></h2>
+<p>是 1 个 NAS系统，是基于 Slackware 的 Linux 系统，虚拟机内核也是 KVM。磁盘阵列管理非常有特色，灵活性很高。同时还有很不错的插件、Docker 和虚拟机支持。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693508645869.png"><img alt="img" src="https://image.3001.net/images/20221125/16693508645869.png"/></a></p>
+<h2 id="_3">总结<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th align="center">产品</th>
+<th align="center">直通</th>
+<th align="center">网络配置</th>
+<th align="center">扩展性</th>
+<th align="center">难度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">PVE</td>
+<td align="center">很棒</td>
+<td align="center">一般</td>
+<td align="center">高</td>
+<td align="center">困难</td>
+</tr>
+<tr>
+<td align="center">ESXi</td>
+<td align="center">一般</td>
+<td align="center">强大</td>
+<td align="center">低</td>
+<td align="center">中等</td>
+</tr>
+<tr>
+<td align="center">unRaid</td>
+<td align="center">一般</td>
+<td align="center">简陋</td>
+<td align="center">中</td>
+<td align="center">简单</td>
+</tr>
+</tbody>
+</table>
+<p>简单总结一下：<strong>PVE 适合有 Linux 基础的玩家，折腾好的话，易用性和扩展性是可以吊打 ESXi 的</strong>。所以国光我也单独开了这个自愈没记录以下  PVE 的折腾记录，学习之余也可以帮助到更多对 PVE 感兴趣的网友。</p>
+<h2 id="_4">参考<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p>更多相关的对比，大家可以自行阅读一下下发的参考链接：</p>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/166352130">知乎 - ESXi、PVE、unRaid对比</a></li>
+<li><a href="https://www.v2ex.com/t/826802">V2EX - 聊聊 esxi 和 pve 家用场景哪个更有优势</a></li>
+</ul>
 <hr/>
 <div class="md-source-file">
 <small>
