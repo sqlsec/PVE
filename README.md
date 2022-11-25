@@ -1,2 +1,1 @@
-# PVE
-国光的 PVE 生产力环境搭建教程
+[![](docs/imgs/cover.jpg)](https://pve.sqlsec.com/)
