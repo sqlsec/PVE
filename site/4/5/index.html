@@ -1,0 +1,1378 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="国光的 PVE 环境搭建教程" name="description"/>
+<meta content="国光" name="author"/>
+<link href="https://pve.sqlsec.com/4/5/" rel="canonical"/>
+<link href="https://image.3001.net/images/20200922/16007336487809.jpg" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-8.5.1" name="generator"/>
+<title>vGPU教程 - 国光的 PVE 环境搭建教程</title>
+<link href="../../assets/stylesheets/main.2e8b5541.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#_1">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--lifted" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="国光的 PVE 环境搭建教程" class="md-header__button md-logo" data-md-component="logo" href="../.." title="国光的 PVE 环境搭建教程">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2zm257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6zM173.3 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            国光的 PVE 环境搭建教程
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              vGPU教程
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="切换深色模式" class="md-option" data-md-color-accent="indigo" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="切换深色模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+<input aria-label="切换浅色模式" class="md-option" data-md-color-accent="blue" data-md-color-media="" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="切换浅色模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<a aria-label="分享" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="分享">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"></path></svg>
+</a>
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/sqlsec/PVE" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    sqlsec/PVE
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+      主页
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../1/1/">
+        准备工作
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../2/1/">
+        PVE 基础
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../3/1/">
+        网络划分
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../1/">
+        PEV 进阶
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../5/1/">
+        软路由
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../6/1/">
+        黑群晖
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../7/1/">
+        黑苹果
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../8/1/">
+        远程穿透
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../9/1/">
+        IPv6 专题
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="国光的 PVE 环境搭建教程" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="国光的 PVE 环境搭建教程">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2zm257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6zM173.3 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5z"></path></svg>
+</a>
+    国光的 PVE 环境搭建教程
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/sqlsec/PVE" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    sqlsec/PVE
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+        主页
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2">
+          准备工作
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="准备工作" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          准备工作
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../1/1/">
+        硬件配置
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../1/2/">
+        系统选择
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../1/3/">
+        磁盘划分
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../1/4/">
+        架构规划
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3">
+          PVE 基础
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="PVE 基础" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          PVE 基础
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/1/">
+        BIOS设置
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/2/">
+        系统安装
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/3/">
+        基础设置
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/4/">
+        常用命令
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/5/">
+        来宾代理
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/6/">
+        华南排错
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
+          网络划分
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="网络划分" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          网络划分
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../3/1/">
+        网络架构
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../3/2/">
+        网络实战
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5">
+          PEV 进阶
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="PEV 进阶" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          PEV 进阶
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../1/">
+        添加硬盘
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../2/">
+        硬件直通
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../3/">
+        配置证书
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../4/">
+        硬盘迁移
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          vGPU教程
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        vGPU教程
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    准备工作
+  </a>
+<nav aria-label="准备工作" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bios">
+    BIOS 设置
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    依赖包安装
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    配置内核
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+    驱动安装
+  </a>
+<nav aria-label="驱动安装" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_5">
+    企业账号
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_6">
+    驱动分享
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_7">
+    驱动安装
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+    验证驱动
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vgpu">
+    vGPU 添加
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vgpu_1">
+    vGPU 限制
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vgpu_2">
+    vGPU 激活
+  </a>
+<nav aria-label="vGPU 激活" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+    安装容器
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_10">
+    容器接口
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_11">
+    续约授权
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_12">
+    参考链接
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../6/">
+        功耗节能
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
+          软路由
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="软路由" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+          软路由
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../5/1/">
+        基本操作
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../5/2/">
+        硬盘扩容
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../5/3/">
+        OpenClash
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../5/4.md">
+        IPv6 配置
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7">
+          黑群晖
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="黑群晖" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+          黑群晖
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/1/">
+        基本安装
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/2/">
+        存储划分
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/3/">
+        SSD缓存
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/4/">
+        CPU修正
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/5/">
+        直通独显
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/6/">
+        远程访问
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/7/">
+        添加证书
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/8/">
+        WebDAV
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/9/">
+        安装 alist
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/10/">
+        终端美化
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/11/">
+        Docker与IPv6
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" id="__nav_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8">
+          黑苹果
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="黑苹果" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
+<span class="md-nav__icon md-icon"></span>
+          黑苹果
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../7/1/">
+        准备工作
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../7/2/">
+        修正配置
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../7/3/">
+        系统安装
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../7/4/">
+        系统优化
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" id="__nav_9" type="checkbox"/>
+<label class="md-nav__link" for="__nav_9">
+          远程穿透
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="远程穿透" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_9">
+<span class="md-nav__icon md-icon"></span>
+          远程穿透
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../8/1/">
+        NAT类型
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../8/2/">
+        ZeroTier
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../8/3/">
+        IPv6 DDNS
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../8/4/">
+        远程桌面
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" id="__nav_10" type="checkbox"/>
+<label class="md-nav__link" for="__nav_10">
+          IPv6 专题
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="IPv6 专题" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_10">
+<span class="md-nav__icon md-icon"></span>
+          IPv6 专题
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/1/">
+        IPv6 基础
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/2/">
+        IPv6 场景
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/3/">
+        IPv6 使用
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/4/">
+        IPv6 普及
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/5/">
+        IPv6与光猫
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    准备工作
+  </a>
+<nav aria-label="准备工作" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bios">
+    BIOS 设置
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    依赖包安装
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    配置内核
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+    驱动安装
+  </a>
+<nav aria-label="驱动安装" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_5">
+    企业账号
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_6">
+    驱动分享
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_7">
+    驱动安装
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+    验证驱动
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vgpu">
+    vGPU 添加
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vgpu_1">
+    vGPU 限制
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vgpu_2">
+    vGPU 激活
+  </a>
+<nav aria-label="vGPU 激活" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+    安装容器
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_10">
+    容器接口
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_11">
+    续约授权
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_12">
+    参考链接
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/sqlsec/PVE/edit/main/docs/4/5.md" title="编辑此页">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1>vGPU教程</h1>
+<h2 id="_1">准备工作<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>其实这部分主要参考前面的两个章节的配置完全就可以了：</p>
+<ul>
+<li><a href="/2/1/">BIOS设置 - 国光的 PVE &amp; Linux 生产力环境搭建教程</a></li>
+<li><a href="/4/2/">硬件直通 - 国光的 PVE &amp; Linux 生产力环境搭建教程</a></li>
+</ul>
+<p>下面默认大家是看过并配置过这两个章节内容的，所以就不详细解释了。</p>
+<h3 id="bios">BIOS 设置<a class="headerlink" href="#bios" title="Permanent link">¶</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>开启</strong> Intel VMX 虚拟化技术（PCIe 件直通必须）</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>开启</strong> VT-d （PCIe 件直通必须）</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>开启</strong> SR-IOV 网卡虚拟化技术 （高效先进的虚拟机网卡技术）</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>开启</strong> Above 4G  Decoding（vGPU 方案需要开启这个选项）</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>开启</strong> Numa （多路 CPU 建议开启，提高多路 CPU 运行效率，合理分配负载）</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>开启</strong> x2APIC（PCIe 硬件直通需要）</li>
+</ul>
+<h3 id="_2">依赖包安装<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<p>首先将可以升级的软件升级到最新版本：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>apt update
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>apt dist-upgrade
+</code></pre></div>
+<p>然后安装相关的依赖包，以及升级最新的 PVE Linux 内核：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>apt install -y build-essential dkms pve-headers mdevctl
+</code></pre></div>
+<h3 id="_3">配置内核<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<p>我们必须加载内核模块才能使 vGPU 工作：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nb">echo</span> vfio &gt;&gt; /etc/modules 
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nb">echo</span> vfio_iommu_type1 &gt;&gt; /etc/modules 
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nb">echo</span> vfio_pci &gt;&gt; /etc/modules 
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="nb">echo</span> vfio_virqfd &gt;&gt; /etc/modules
+</code></pre></div>
+<p>阻止 Proxmox 自带的 Nvidia GPU 的开源新驱动程序：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nb">echo</span> <span class="s2">"blacklist nvidiafb"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nb">echo</span> <span class="s2">"blacklist nouveau"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="nb">echo</span> <span class="s2">"blacklist nvidia"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="nb">echo</span> <span class="s2">"blacklist radeon"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="nb">echo</span> <span class="s2">"blacklist amdgpu"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="nb">echo</span> <span class="s2">"blacklist snd_hda_intel"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="nb">echo</span> <span class="s2">"blacklist snd_hda_codec_hdmi"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="nb">echo</span> <span class="s2">"blacklist i915"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+</code></pre></div>
+<p>应用我们的内核配置并重启:</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>update-initramfs -u -k all <span class="o">&amp;&amp;</span> reboot
+</code></pre></div>
+<h2 id="_4">驱动安装<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p>首先需要 PVE 宿主机安装 NVIDIA 的驱动，但是 N 卡的计算卡只针对企业商业用户并不开放给普通个人用户下载，所以我们得注册 NVIDIA 的企业账号登录才可以下载，具体可以参考 NVIDIA 官网文档：</p>
+<p><a href="https://docs.nvidia.com/grid/latest/grid-software-quick-start-guide/index.html#getting-your-nvidia-grid-software">Quick Start Guide :: NVIDIA Virtual GPU Software Documentation</a> </p>
+<p>但是这个官方文档写的比较蛋疼，国内的用户大家直接看我下面的细节操作就行了。</p>
+<h3 id="_5">企业账号<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<p>注册的时候尽量不要使用 gmail.com 或者 qq.com 等通用个人邮箱服务，人工审核大概率不通过。国光建议大家考虑使用域名邮箱或者其他企业的邮箱，这里我使用的是自己网站的域名邮箱： <strong>admin@sqlsec.com</strong>，总的来说国内<a href="https://enterpriseproductregistration.nvidia.com/?LicType=EVAL&amp;ProductFamily=vGPU">申请注册 NVIDIA 企业账户</a>还是比较繁琐的。</p>
+<p>下面是国光我注册的时候填写的大概信息：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16734940272580.png"><img alt="" src="https://image.3001.net/images/20230112/16734940272580.png"/></a> </p>
+<p>主要记住如下一些点：</p>
+<ol>
+<li>选择台湾地区，国光认为这是 NVIDIA 的老家，成功率应该高一点</li>
+<li>选择 IT Service 信息服务行业</li>
+<li>职位选择：学生，毕竟我是学生记得多塞 200 块钱的梗，全世界基本上如此</li>
+<li>服务器选择国内的：Lenovo、VDI 选择 RedHat 虚拟化，记得规模选择 1-99 越小越好，大规模可能真的会被电话核实</li>
+<li>总之，低调一点，毕竟我们是白嫖，不要加装自己真的是个大的企业用户就行</li>
+</ol>
+<p>注册申请提交后，可以看到大概需要 24-48 小时的时间：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16734531144761.png"><img alt="" src="https://image.3001.net/images/20230112/16734531144761.png"/></a> </p>
+<p>实际上我们不需要等待 24-48 小时，顺利的话，1小时不到就可以接收到 NVIDIA 的邮件：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16735038661099.png"><img alt="" src="https://image.3001.net/images/20230112/16735038661099.png"/></a> </p>
+<p>主要就是这个「NVIDIA Set Pasword」邮件，  我们点进去，选择 「SET PASSWORD」设置账户密码：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16735039535250.png"><img alt="" src="https://image.3001.net/images/20230112/16735039535250.png"/></a> </p>
+<p>URL 里面会自带 Token 认证，然后我们可以直接设置我们 <strong>admin@sqlsec.com</strong> 的密码：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16735040931564.png"><img alt="" src="https://image.3001.net/images/20230112/16735040931564.png"/></a> </p>
+<p>接着使用我们的账号和密码登录：<a href="https://nvid.nvidia.com/affwebservices/public/saml2sso?SPID=https://api.licensing.nvidia.com">NVIDIA许可门户网站</a> </p>
+<p>直接打开「SOFTWARE DOWNLOADS」下载页面：https://ui.licensing.nvidia.com/software</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16735058062157.png"><img alt="" src="https://image.3001.net/images/20230112/16735058062157.png"/></a> </p>
+<p>但是筛选 VGPU 发现最新的只有 vGPU 14.4 版本的驱动，这个要吐槽一下，最新的没有直接展出出来，还需要我们手动筛选一下平台为「Linux KVM」，这就可看到最新的 v15.0 的驱动了，如果还没出现的话，我们再多添加几个条件筛选即可：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16735060302823.png"><img alt="" src="https://image.3001.net/images/20230112/16735060302823.png"/></a> </p>
+<p>但是官网这个下载驱动包的链接应该是存在鉴权时间的，国光我贴到文章里面的话，后期链接失效就有的我改了：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16735062347577.png"><img alt="" src="https://image.3001.net/images/20230112/16735062347577.png"/></a> </p>
+<p>那大家无法注册企业账号该怎么办呢？不要担心，我们继续往下看。</p>
+<h3 id="_6">驱动分享<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<p>没有企业账号也没关系，网上很多热心网友也有分享过驱动的下载链接：</p>
+<ul>
+<li>
+<p><strong>佛西大佬的公开网盘</strong>：<a href="https://foxi.buduanwang.vip/pan/foxi/Virtualization/vGPU/">https://foxi.buduanwang.vip/pan/foxi/Virtualization/vGPU/</a></p>
+</li>
+<li>
+<p><strong>Github 的 vGPU  Driver</strong>：<a href="https://github.com/VGPU-Community-Drivers/NV-VGPU-Driver/releases">https://github.com/VGPU-Community-Drivers/NV-VGPU-Driver/releases</a></p>
+</li>
+<li><strong>某俄罗斯大佬的网盘 15.0 vGPU 驱动</strong>：<a href="https://nextcloud.igit.spb.ru/index.php/s/joPd9YGz65rpLjB?path=%2F">https://nextcloud.igit.spb.ru/index.php/s/joPd9YGz65rpLjB?path=%2F</a></li>
+<li>
+<p><strong>国光的 OneDriver  分享的 15.0 vGPU 驱动</strong>：<a href="https://uijay-my.sharepoint.com/:u:/g/personal/aywtc_myoffice_fun/EbupgUpP9FVLjvt-zZnKxpwBIaVieiQzOh9-wJmk6Ru36A?e=SdtfqE">NVIDIA-GRID-Linux-KVM-525.60.12-525.60.13-527.41.zip</a></p>
+</li>
+<li>
+<p><strong>国光的度网盘分享的 15.0 vGPU 驱动</strong>：链接: <a href="https://pan.baidu.com/s/1J72clvi3IyZg-jStue2LJA?pwd=vGPU">https://pan.baidu.com/s/1J72clvi3IyZg-jStue2LJA?pwd=vGPU</a> 提取码: vGPU</p>
+</li>
+</ul>
+<h3 id="_7">驱动安装<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<p>解压内容只要包含 Host 主机驱动和各个平台的客户端驱动：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/1673457052965.png"><img alt="" src="https://image.3001.net/images/20230112/1673457052965.png"/></a></p>
+<p>这里我们将 Host 驱动 NVIDIA-Linux-x86_64-525.60.12-vGPU-kvm.run 上传到 PVE 上准备安装。</p>
+<p>因为我们的 Tesla P4 是完全支持 vGPU 的：</p>
+<details>
+<summary>显卡原生不支持 vGPU ？ 不要慌，国光我会出手：</summary>
+<p>如果你的卡不在 NVIDIA® Virtual GPU 官方列表中的话：<a href="https://docs.nvidia.com/grid/gpus-supported-by-vGPU.html">NVIDIA® Virtual GPU Software Supported GPUs</a>，但是在下图中可以找到你的设备的话</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16734578074454.png"><img alt="" src="https://image.3001.net/images/20230112/16734578074454.png"/></a>
+也不要灰心，参考文章下面的参考链接：<a href="https://gitlab.com/polloloco/vGPU-proxmox">PolloLoco / NVIDIA vGPU Guide </a> 也可完成。</p>
+</details>
+<p>安装门槛就降低了很多我们可以直接安装：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>chmod +x NVIDIA-Linux-x86_64-525.60.12-vgpu-kvm.run 
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>./NVIDIA-Linux-x86_64-525.60.12-vgpu-kvm.run --dkms
+</code></pre></div>
+<p>因为国光我已经安装过了，这里提示了是否继续安装，我们选择继续安装就行了：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16734917078756.png"><img alt="" src="https://image.3001.net/images/20230112/16734917078756.png"/></a> </p>
+<p>开始 Build 构建内核模块，等待完成：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16734934298798.png"><img alt="" src="https://image.3001.net/images/20230112/16734934298798.png"/></a> </p>
+<details class="warning">
+<summary>解决安装报错：Unable to load the kernel module 'nvidia.ko'</summary>
+<p>参考上面的操作，我们大概率会遇到下面图上的这个报错：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16734917203583.png"><img alt="" src="https://image.3001.net/images/20230112/16734917203583.png"/></a> </p>
+<p>不要慌，国光我会出手！经过多次测试，发现和 vfio.conf 文件里面的配置存在冲突，我们直接删掉即可：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>rm /etc/modprobe.d/vfio.conf
+</code></pre></div>
+</details>
+<p>如果构建没问题的话，后面基本上都会比较顺利，接着开始安装驱动： </p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16734934485912.png"><img alt="" src="https://image.3001.net/images/20230112/16734934485912.png"/></a> </p>
+<p>驱动安装好后，提示：是否要注册 DKMS 模块，那肯定选择「Yes」了：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16734935644529.png"><img alt="" src="https://image.3001.net/images/20230112/16734935644529.png"/></a> </p>
+<p>之后提示安装完成：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16734936654058.png"><img alt="" src="https://image.3001.net/images/20230112/16734936654058.png"/></a> </p>
+<p>安装完成后重启即可生效。</p>
+<h3 id="_8">验证驱动<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
+<p>通过检查内核加载模块列表中的 VFIO 驱动程序来验证 NVIDIA VGPU 软件包是否已正确安装和加载：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>lsmod <span class="p">|</span>grep vfio 
+</code></pre></div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16735103197474.png"><img alt="" src="https://image.3001.net/images/20230112/16735103197474.png"/></a> </p>
+<p>查看平台中所有 NVIDIA GPU的概览信息：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>nvidia-smi
+</code></pre></div>
+<p>正常识别到了我们的 Tesla P4 下显卡：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16735113454307.png"><img alt="" src="https://image.3001.net/images/20230112/16735113454307.png"/></a> </p>
+<p>因为上图还显示了我们的 RTX 3060 和 GT 630 显卡，我们还可以使用下面的精简命令单独查看 vGPU 相关的显卡：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>nvidia-smi vgpu
+</code></pre></div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16735117241858.png"><img alt="" src="https://image.3001.net/images/20230112/16735117241858.png"/></a> </p>
+<p>查询我们 GPU 支持的 mdev 类型列表：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a>ls /sys/class/mdev_bus/*/mdev_supported_types 
+</code></pre></div>
+<p>以及这些类型可支持的 vGPU 数量：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>cat /sys/class/mdev_bus/*/mdev_supported_types/*/available_instances
+</code></pre></div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16735124355600.png"><img alt="" src="https://image.3001.net/images/20230112/16735124355600.png"/></a> </p>
+<p>以上两个命令也可以使用下面一条命令查看：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>mdevctl types
+</code></pre></div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16735379729207.png"><img alt="" src="https://image.3001.net/images/20230112/16735379729207.png"/></a> </p>
+<p>其实这块就正对应着 PVE Web UI 里面的现在这个界面：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16735124942109.png"><img alt="" src="https://image.3001.net/images/20230112/16735124942109.png"/></a> </p>
+<p>下表是国光整理的对这各个Tesla P4 支持的 vGPU 的 MDev 类型的解释（共支持14种类型）：</p>
+<table>
+<thead>
+<tr>
+<th align="left">类别</th>
+<th align="center">代号</th>
+<th align="center">最大实例数</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">GRID P4-1Q</td>
+<td align="center">nvidia-63</td>
+<td align="center">8</td>
+<td>1GB 显存，最大分辨率为：5120x2880</td>
+</tr>
+<tr>
+<td align="left">GRID P4-2Q</td>
+<td align="center">nvidia-64</td>
+<td align="center">4</td>
+<td>2GB 显存，最大分辨率为：7680x4320</td>
+</tr>
+<tr>
+<td align="left">GRID P4-4Q</td>
+<td align="center">nvidia-65</td>
+<td align="center">2</td>
+<td>4GB 显存，最大分辨率为：7680x4320</td>
+</tr>
+<tr>
+<td align="left">GRID P4-8Q</td>
+<td align="center">nvidia-66</td>
+<td align="center">1</td>
+<td>8GB 显存，最大分辨率为：7680x4320</td>
+</tr>
+<tr>
+<td align="left">GRID P4-1A</td>
+<td align="center">nvidia-67</td>
+<td align="center">8</td>
+<td>1GB 显存，最大分辨率为：1280x1084</td>
+</tr>
+<tr>
+<td align="left">GRID P4-2A</td>
+<td align="center">nvidia-68</td>
+<td align="center">4</td>
+<td>2GB 显存，最大分辨率为：1280x1084</td>
+</tr>
+<tr>
+<td align="left">GRID P4-4A</td>
+<td align="center">nvidia-69</td>
+<td align="center">2</td>
+<td>4GB 显存，最大分辨率为：1280x1084</td>
+</tr>
+<tr>
+<td align="left">GRID P4-8A</td>
+<td align="center">nvidia-70</td>
+<td align="center">1</td>
+<td>8GB 显存，最大分辨率为：1280x1084</td>
+</tr>
+<tr>
+<td align="left">GRID P4-1B</td>
+<td align="center">nvidia-71</td>
+<td align="center">8</td>
+<td>1GB 显存，最大分辨率为：5120x2880</td>
+</tr>
+<tr>
+<td align="left">GRID P4-1B4</td>
+<td align="center">nvidia-243</td>
+<td align="center">8</td>
+<td>不推荐使用，未来可能会被移除</td>
+</tr>
+<tr>
+<td align="left">GRID P4-2B</td>
+<td align="center">nvidia-157</td>
+<td align="center">4</td>
+<td>2GB 显存，最大分辨率为：5120x2880</td>
+</tr>
+<tr>
+<td align="left">GRID P4-2B4</td>
+<td align="center">nvidia-214</td>
+<td align="center">4</td>
+<td>不推荐使用，未来可能会被移除</td>
+</tr>
+<tr>
+<td align="left">GRID P4-4C</td>
+<td align="center">nvidia-288</td>
+<td align="center">2</td>
+<td>4GB 显存，最大分辨率为：4096x2440</td>
+</tr>
+<tr>
+<td align="left">GRID P4-8C</td>
+<td align="center">nvidia-289</td>
+<td align="center">1</td>
+<td>1GB 显存，最大分辨率为：4096x2440</td>
+</tr>
+</tbody>
+</table>
+<p>其中我们注意到了类似里面的：1、2、4、8 这几个数字，这个表示这 vGPU 的显存，所以 1 开头的可用数量为 8，毕竟 Tesla 只有 8GB 显存，这个还是比较容易理解的。肯定还有小伙伴好奇这个：A、B、C、Q 是啥意思呢？这其实代表着 vGPU 的几个不通系列，下表是 NVIDIA 官方 PDF 里面的解释：</p>
+<table>
+<thead>
+<tr>
+<th align="center">系列</th>
+<th align="center">最大帧数</th>
+<th align="left">解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Q</td>
+<td align="center">60FPS</td>
+<td align="left">兼顾 Quadro 技术的性能和特点</td>
+</tr>
+<tr>
+<td align="center">C</td>
+<td align="center">60FPS</td>
+<td align="left">为计算密集型服务器提供高性能计算</td>
+</tr>
+<tr>
+<td align="center">B</td>
+<td align="center">45FPS</td>
+<td align="left">面向业务专员和知识工作者提供虚拟桌面</td>
+</tr>
+<tr>
+<td align="center">A</td>
+<td align="center">60FPS</td>
+<td align="left">提供针对虚拟机应用程序用户的应用程序流的会话相关解决方案</td>
+</tr>
+</tbody>
+</table>
+<details class="note">
+<summary>国光小课堂：vGPU 许可证相关</summary>
+<p>NVIDIA vGPU 需要软件许可证才能启用 Guest 来宾 VM 中的所有 vGPU 功能，许可证类型取决于 vGPU 类型。</p>
+<ul>
+<li>Q 系列 vGPU 类型需要 vWS 许可证</li>
+<li>C 系列的 vGPU 类型需要 NVIDIA 虚拟计算服务器 vCS 许可证，但也可以与 vWS 许可证一起使用</li>
+<li>B 系列 vGPU 类型需要使用 vPC 许可证，但也可以与 vWS 许可证一起使用</li>
+<li>A 系列 vGPU 类型需要 vApps 许可证</li>
+</ul>
+</details>
+<h2 id="vgpu">vGPU 添加<a class="headerlink" href="#vgpu" title="Permanent link">¶</a></h2>
+<p>通过上面的章节，我们大概了解到了  vGPU 的 MDev 类型，我们直接像添加 PCI 设备那样，给 VM 添加对应的 MDev 类型的 VGPU 即可：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230117/16739418397360.png"><img alt="" src="https://image.3001.net/images/20230117/16739418397360.png"/></a> </p>
+<p>如果如果您的 PVE 服务器版本低于 7.2-4，则还得添加额外的参数到虚拟机的配置文件中才可以：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a>qm <span class="nb">set</span> VMID -args <span class="s1">'-uuid &lt;UUID-OF-THE-MDEV&gt;'</span> 
+</code></pre></div>
+<p>因为国光我的这个实验环境是 PVE 7.3 版本，所以这一步就展开说了，感兴趣的网友可以自行去谷歌一下。</p>
+<p>此时打开我们的 VM 发现并没有识别到我们的 vGPU 显卡：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230117/16739438875641.png"><img alt="" src="https://image.3001.net/images/20230117/16739438875641.png"/></a> </p>
+<p>这是因为没有安装 Guest 驱动的原因，我们将  527.41_grid_win10_win11_server2019_server2022_dch_64bit_international.exe 传输到我们的 VM 里面：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230117/16739440077351.png"><img alt="" src="https://image.3001.net/images/20230117/16739440077351.png"/></a> </p>
+<p>等待驱动的安装完成即可，安装的过程可以看到已经识别到了我们的 Tesla P4 显卡了：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230117/16739446224714.png"><img alt="" src="https://image.3001.net/images/20230117/16739446224714.png"/></a> </p>
+<p>虽然我们的 P4 可以直接使用了，但是使用命令查看发现我们的 Lincense 依然是未激活的：</p>
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a>nvidia-smi -q |findstr Lincese
+</code></pre></div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230117/1673947701855.png"><img alt="" src="https://image.3001.net/images/20230117/1673947701855.png"/></a> </p>
+<p>使用一段时候 Windows 右下角也会弹窗提示：NVIDIA 许可证不存在</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230121/16743147703234.png"><img alt="" src="https://image.3001.net/images/20230121/16743147703234.png"/></a> </p>
+<p>关于这块的限制有哪些，国光我单独放到了下一小节来叙述。 </p>
+<h2 id="vgpu_1">vGPU 限制<a class="headerlink" href="#vgpu_1" title="Permanent link">¶</a></h2>
+<p>那么肯定有小伙伴们好奇 vGPU 不存在有哪些缺点和限制呢？这块国光我测试过很多，在配合 <a href="https://www.nvidia.com/content/Control-Panel-Help/vLatest/zh-cn/mergedProjects/nvlicCHS/About_GRID_Licensing_-_Reference.htm">NVIDIA 官方</a> 和群友的情况下，最终也找到了一点点规律。</p>
+<p>如果不激活 vGPU 的话，随着开机运行时间的推移，帧数会逐渐下降，分为几个档位，从 60FPS 降到 15FPS 最终会非常卡顿只有 3FPS：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230121/16742665427590.png"><img alt="" src="https://image.3001.net/images/20230121/16742665427590.png"/></a> </p>
+<p>而且 CUDA 功能也无法使用，为了验证 CUDA 是否正常使用，我们首先安装 <a href="https://developer.nvidia.com/cuda-downloads">NVIDIA  CUDA 工具包</a>，虽然 GPU-Z 软件显示支持 CUDA，但是如果未激活长时间使用的话，通过 N 卡官方的 dmeo （注意自己版本的路径）测试并不能顺利运行：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="s2">"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.0\extras\demo_suite\bandwidthTest.exe"</span>
+</code></pre></div>
+<p>如果最后都显示 <strong>Result = PASS</strong> 则说明 CUDA 安装成功且正常工作。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230121/16742672405509.png"><img alt="" src="https://image.3001.net/images/20230121/16742672405509.png"/></a> </p>
+<p>所以 demo 里面调用 CUDA 的 exe 测试小程序也无法正常运行：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="s2">"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.0\extras\demo_suite\oceanFFT.exe"</span>
+</code></pre></div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230121/16742673416042.png"><img alt="" src="https://image.3001.net/images/20230121/16742673416042.png"/></a> </p>
+<h2 id="vgpu_2">vGPU 激活<a class="headerlink" href="#vgpu_2" title="Permanent link">¶</a></h2>
+<h3 id="_9">安装容器<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
+<p>vGPU 目前国外已经有成熟的 <a href="https://gitea.publichub.eu/oscar.krause/fastapi-dls">fastapi-dls 开源项目</a>可以直接使用了，官方还贴心了封装了 docker 容器。</p>
+<p>DockerHub 的 fastapi-dls 的容器地址是：<a href="https://hub.docker.com/r/collinwebdesigns/fastapi-dls">https://hub.docker.com/r/collinwebdesigns/fastapi-dls</a></p>
+<p>根据官方的 README 来创建容器：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="c1"># 设定工作目录并创建</span>
+<a href="#__codelineno-17-2" id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="nv">WORKING_DIR</span><span class="o">=</span>/opt/docker/fastapi-dls/cert
+<a href="#__codelineno-17-3" id="__codelineno-17-3" name="__codelineno-17-3"></a>mkdir -p <span class="nv">$WORKING_DIR</span>
+<a href="#__codelineno-17-4" id="__codelineno-17-4" name="__codelineno-17-4"></a>
+<a href="#__codelineno-17-5" id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="c1"># 生成相关证书</span>
+<a href="#__codelineno-17-6" id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="nb">cd</span> <span class="nv">$WORKING_DIR</span>
+<a href="#__codelineno-17-7" id="__codelineno-17-7" name="__codelineno-17-7"></a>openssl genrsa -out <span class="nv">$WORKING_DIR</span>/instance.private.pem <span class="m">2048</span> 
+<a href="#__codelineno-17-8" id="__codelineno-17-8" name="__codelineno-17-8"></a>openssl rsa -in <span class="nv">$WORKING_DIR</span>/instance.private.pem -outform PEM -pubout -out <span class="nv">$WORKING_DIR</span>/instance.public.pem
+<a href="#__codelineno-17-9" id="__codelineno-17-9" name="__codelineno-17-9"></a>openssl req -x509 -nodes -days <span class="m">3650</span> -newkey rsa:2048 -keyout  <span class="nv">$WORKING_DIR</span>/webserver.key -out <span class="nv">$WORKING_DIR</span>/webserver.crt
+<a href="#__codelineno-17-10" id="__codelineno-17-10" name="__codelineno-17-10"></a>
+<a href="#__codelineno-17-11" id="__codelineno-17-11" name="__codelineno-17-11"></a><span class="c1"># 创建容器的官方建议命令</span>
+<a href="#__codelineno-17-12" id="__codelineno-17-12" name="__codelineno-17-12"></a>docker run -e <span class="nv">DLS_URL</span><span class="o">=</span><span class="sb">`</span>hostname -i<span class="sb">`</span> -e <span class="nv">DLS_PORT</span><span class="o">=</span><span class="m">443</span> -p <span class="m">443</span>:443 -v <span class="nv">$WORKING_DIR</span>:/app/cert collinwebdesigns/fastapi-dls:latest
+</code></pre></div>
+<details>
+<summary>Docker 启动相关的其他相关的变量</summary>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>默认</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DEBUG</td>
+<td>false</td>
+<td>切换调试模式 fastapi</td>
+</tr>
+<tr>
+<td>DLS_URL</td>
+<td>localhost</td>
+<td>客户端访问 dls 实例的 URL 地址</td>
+</tr>
+<tr>
+<td>DLS_PORT</td>
+<td>443</td>
+<td>dls 实例的端口 192.168.1.6</td>
+</tr>
+<tr>
+<td>LEASE_EXPIRE_DAYS</td>
+<td>90</td>
+<td>证书签发时间（天）</td>
+</tr>
+<tr>
+<td>DATABASE</td>
+<td>sqlite:///db.sqlite</td>
+<td>细节参考<a href="https://docs.sqlalchemy.org/en/14/core/engines.html">官方 SQLAlchemy 文档</a></td>
+</tr>
+<tr>
+<td>CORS_ORIGINS</td>
+<td>https://{DLS_URL}</td>
+<td>设置标头 Access-Control-Allow-Origin</td>
+</tr>
+<tr>
+<td>SITE_KEY_XID</td>
+<td>00000000-0000-0000-0000-000000000000</td>
+<td>站点标识 uuid</td>
+</tr>
+<tr>
+<td>INSTANCE_REF</td>
+<td>00000000-0000-0000-0000-000000000000</td>
+<td>实例标识 uuid</td>
+</tr>
+<tr>
+<td>INSTANCE_KEY_RSA</td>
+<td><app-dir>/cert/instance.private.pem</app-dir></td>
+<td>JWT 相关的 RSA 密钥</td>
+</tr>
+<tr>
+<td>INSTANCE_KEY_PUB</td>
+<td><app-dir>/cert/instance.public.pem</app-dir></td>
+<td>站点范围的公钥</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>实际上我们主要关注一下 <strong>DLS_URL</strong> 参数，换成自己的  Guest 来宾客户端可以访问到的 IP 地址即可，然后改一下授权时间为 1825 天（5年），下面是国光我最终的创建容器的命令：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a>docker run -e <span class="nv">LEASE_EXPIRE_DAYS</span><span class="o">=</span><span class="m">1825</span> -e <span class="nv">DLS_URL</span><span class="o">=</span><span class="m">192</span>.168.1.6 -e <span class="nv">DLS_PORT</span><span class="o">=</span><span class="m">443</span> -p <span class="m">443</span>:443 -v <span class="nv">$WORKING_DIR</span>:/app/cert collinwebdesigns/fastapi-dls:latest
+</code></pre></div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230122/16744029981822.png"><img alt="" src="https://image.3001.net/images/20230122/16744029981822.png"/></a> </p>
+<h3 id="_10">容器接口<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
+<p>下表只列出了主要的接口，更详细的接口可以参考 <code>/-/docs</code> 和 <code>/-/redoc</code> 的 PATH 接口文档。</p>
+<table>
+<thead>
+<tr>
+<th align="center">请求方法</th>
+<th align="left">PATH</th>
+<th align="left">解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">GTE</td>
+<td align="left"><code>/</code></td>
+<td align="left">重定向到 <code>/-/readme</code></td>
+</tr>
+<tr>
+<td align="center">GTE</td>
+<td align="left"><code>/-/health</code></td>
+<td align="left">用于运行状况检查，还显示当前版本和提交哈希。</td>
+</tr>
+<tr>
+<td align="center">GTE</td>
+<td align="left"><code>/-/readme</code></td>
+<td align="left">HTML 页面展示 README.md</td>
+</tr>
+<tr>
+<td align="center">GTE</td>
+<td align="left"><code>/-/docs</code></td>
+<td align="left"><code>GET /-/openapi.json</code> 展示 Swagger UI 页面的接口文档</td>
+</tr>
+<tr>
+<td align="center">GTE</td>
+<td align="left"><code>/-/redoc</code></td>
+<td align="left"><code>GET /-/openapi.json</code> 展示 ReDoc 页面的接口文档</td>
+</tr>
+<tr>
+<td align="center">GTE</td>
+<td align="left"><code>/-/manage</code></td>
+<td align="left">显示用于删除源或租约的非常基本的 UI</td>
+</tr>
+<tr>
+<td align="center">GTE</td>
+<td align="left"><code>/-/origins?leases=false</code></td>
+<td align="left">列出注册的原产地，origin 参数指的是包括每个租约的引用源</td>
+</tr>
+<tr>
+<td align="center">DELETE</td>
+<td align="left"><code>/-/origins</code></td>
+<td align="left">删除所有源及其租约</td>
+</tr>
+<tr>
+<td align="center">GTE</td>
+<td align="left"><code>/-/leases?origin=false</code></td>
+<td align="left">列出当前租约，origin 参数指的是包括每个租约的引用源</td>
+</tr>
+<tr>
+<td align="center">DELETE</td>
+<td align="left"><code>/-/lease/{lease_ref}</code></td>
+<td align="left">删除租约</td>
+</tr>
+<tr>
+<td align="center">GTE</td>
+<td align="left"><code>/client-token</code></td>
+<td align="left">生成客户端令牌</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">续约授权<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Windows</strong></li>
+</ul>
+<p>首先请求生成客户端令牌的接口 <code>/client-token</code> 拿到授权文件：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230123/1674403947856.jpg"><img alt="" src="https://image.3001.net/images/20230123/1674403947856.jpg"/></a> </p>
+<p>然后放入到下面的路径：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-19-1" id="__codelineno-19-1" name="__codelineno-19-1"></a>C:<span class="se">\P</span>rogram Files<span class="se">\N</span>VIDIA Corporation<span class="se">\v</span>GPU Licensing<span class="se">\C</span>lientConfigToken
+</code></pre></div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230123/1674404441119.png"><img alt="" src="https://image.3001.net/images/20230123/1674404441119.png"/></a> </p>
+<p>重启电脑即可看到我们的 Guest 来宾客户端已经正常拿到授权了：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230123/16744045737305.png"><img alt="" src="https://image.3001.net/images/20230123/16744045737305.png"/></a> </p>
+<p>也可以使用命令行查看授权细节：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-20-1" id="__codelineno-20-1" name="__codelineno-20-1"></a>nvidia-smi -q <span class="p">|</span>findstr Lincese
+</code></pre></div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230123/16744046808482.png"><img alt="" src="https://image.3001.net/images/20230123/16744046808482.png"/></a> </p>
+<ul>
+<li><strong>Linux</strong></li>
+</ul>
+<p>Linux 使用下面命令下载授权文件到 <code>/etc/nvidia/ClientConfigToken/</code> 下然后重启服务即可：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-21-1" id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="c1"># 下载授权文件</span>
+<a href="#__codelineno-21-2" id="__codelineno-21-2" name="__codelineno-21-2"></a>curl --insecure -X GET https://&lt;dls-hostname-or-ip&gt;/client-token -o /etc/nvidia/ClientConfigToken/client_configuration_token.tok
+<a href="#__codelineno-21-3" id="__codelineno-21-3" name="__codelineno-21-3"></a>service nvidia-gridd restart
+<a href="#__codelineno-21-4" id="__codelineno-21-4" name="__codelineno-21-4"></a>
+<a href="#__codelineno-21-5" id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="c1"># 查看授权细节</span>
+<a href="#__codelineno-21-6" id="__codelineno-21-6" name="__codelineno-21-6"></a>nvidia-smi -q <span class="p">|</span> grep <span class="s2">"License"</span>
+</code></pre></div>
+<h2 id="_12">参考链接<a class="headerlink" href="#_12" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="http://www.vGPU.com.cn/">vGPU资源信息</a></li>
+<li><a href="https://pve.proxmox.com/wiki/NVIDIA_vGPU_on_Proxmox_VE_7.x">NVIDIA vGPU on Proxmox VE 7.x</a></li>
+<li><a href="https://gitlab.com/polloloco/vGPU-proxmox">PolloLoco / NVIDIA vGPU Guide · GitLab</a></li>
+<li><a href="https://foxi.buduanwang.vip/virtualization/pve/2195.html/">佛西博客 - 来自民间的vGPU授权fastapi-dls</a></li>
+<li><a href="https://hczhang.cn/cloud_computing/apply-for-nvidia-vgpu-license.html">申请NVIDIA vGPU License - hczhang.cn</a></li>
+<li><a href="https://hczhang.cn/cloud_computing/deploy-nvidia-vgpu-license-server.html">部署NVIDIA vGPU License Server - hczhang.cn</a></li>
+<li><a href="https://hczhang.cn/cloud_computing/config-nvidia-license-server.html">配置NVIDIA License Server - hczhang.cn</a></li>
+<li><a href="https://git.collinwebdesigns.de/oscar.krause/fastapi-dls">https://git.collinwebdesigns.de/oscar.krause/fastapi-dls</a></li>
+<li><a href="https://gitea.publichub.eu/oscar.krause/fastapi-dls">https://gitea.publichub.eu/oscar.krause/fastapi-dls</a></li>
+<li><a href="https://hub.docker.com/r/collinwebdesigns/fastapi-dls">https://hub.docker.com/r/collinwebdesigns/fastapi-dls</a></li>
+</ul>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      最后更新:
+      2023-03-06
+    
+  </small>
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: 硬盘迁移" class="md-footer__link md-footer__link--prev" href="../4/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                上一页
+              </span>
+              硬盘迁移
+            </div>
+</div>
+</a>
+<a aria-label="下一页: 功耗节能" class="md-footer__link md-footer__link--next" href="../6/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                下一页
+              </span>
+              功耗节能
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright ©  国光
+    </div>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://www.sqlsec.com" rel="noopener" target="_blank" title="国光">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M341.52 285.56c33.65 0 82.34-6.94 82.34-47 .22-6.74.86-1.82-20.88-96.24-4.62-19.15-8.68-27.84-42.31-44.65-26.09-13.34-82.92-35.37-99.73-35.37-15.66 0-20.2 20.17-38.87 20.17-18 0-31.31-15.06-48.12-15.06-16.14 0-26.66 11-34.78 33.62-27.5 77.55-26.28 74.27-26.12 78.27 0 24.8 97.64 106.11 228.47 106.11M429 254.84c4.65 22 4.65 24.35 4.65 27.25 0 37.66-42.33 58.56-98 58.56-125.74.08-235.91-73.65-235.91-122.33a49.55 49.55 0 0 1 4.06-19.72C58.56 200.86 0 208.93 0 260.63c0 84.67 200.63 189 359.49 189 121.79 0 152.51-55.08 152.51-98.58 0-34.21-29.59-73.05-82.93-96.24"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "search.suggest", "search.highlight", "search.share", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../assets/javascripts/bundle.d691e9de.min.js"></script>
+<script async="async" data-fontsize="15px" data-mobile="false" data-random="false" data-text="OpenCore,Hackintosh,DSDT,SSDT,Kernel,Kexts,UEFI,NVRAM,BIOS,ACPI,Clover,AWAC,XOSI,Lilu.kext,VirtualSMC.kext,WhateverGreen.kext" id="click-show-text" src="https://html.sqlsec.com/click-show-text.min.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

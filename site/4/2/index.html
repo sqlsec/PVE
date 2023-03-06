@@ -1,0 +1,993 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="国光的 PVE 环境搭建教程" name="description"/>
+<meta content="国光" name="author"/>
+<link href="https://pve.sqlsec.com/4/2/" rel="canonical"/>
+<link href="https://image.3001.net/images/20200922/16007336487809.jpg" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-8.5.1" name="generator"/>
+<title>硬件直通 - 国光的 PVE 环境搭建教程</title>
+<link href="../../assets/stylesheets/main.2e8b5541.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#_1">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--lifted" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="国光的 PVE 环境搭建教程" class="md-header__button md-logo" data-md-component="logo" href="../.." title="国光的 PVE 环境搭建教程">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2zm257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6zM173.3 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            国光的 PVE 环境搭建教程
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              硬件直通
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="切换深色模式" class="md-option" data-md-color-accent="indigo" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="切换深色模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+<input aria-label="切换浅色模式" class="md-option" data-md-color-accent="blue" data-md-color-media="" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="切换浅色模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<a aria-label="分享" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="分享">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"></path></svg>
+</a>
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/sqlsec/PVE" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    sqlsec/PVE
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+      主页
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../1/1/">
+        准备工作
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../2/1/">
+        PVE 基础
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../3/1/">
+        网络划分
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../1/">
+        PEV 进阶
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../5/1/">
+        软路由
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../6/1/">
+        黑群晖
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../7/1/">
+        黑苹果
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../8/1/">
+        远程穿透
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../9/1/">
+        IPv6 专题
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="国光的 PVE 环境搭建教程" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="国光的 PVE 环境搭建教程">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2zm257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6zM173.3 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5z"></path></svg>
+</a>
+    国光的 PVE 环境搭建教程
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/sqlsec/PVE" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    sqlsec/PVE
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+        主页
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2">
+          准备工作
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="准备工作" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          准备工作
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../1/1/">
+        硬件配置
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../1/2/">
+        系统选择
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../1/3/">
+        磁盘划分
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../1/4/">
+        架构规划
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3">
+          PVE 基础
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="PVE 基础" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          PVE 基础
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/1/">
+        BIOS设置
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/2/">
+        系统安装
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/3/">
+        基础设置
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/4/">
+        常用命令
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/5/">
+        来宾代理
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/6/">
+        华南排错
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
+          网络划分
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="网络划分" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          网络划分
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../3/1/">
+        网络架构
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../3/2/">
+        网络实战
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5">
+          PEV 进阶
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="PEV 进阶" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          PEV 进阶
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../1/">
+        添加硬盘
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          硬件直通
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        硬件直通
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    脚本实现
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    手工实现
+  </a>
+<nav aria-label="手工实现" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#iommu">
+    检测 IOMMU 是否开启
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#iommu-sr-iov">
+    开启 IOMMU 和 SR-IOV
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vfio">
+    添加 VFIO 模块
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#iommu_1">
+    IOMMU 中断重映射
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ovmf">
+    OVMF 下显卡直通
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    防止虚拟机崩溃
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../3/">
+        配置证书
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../4/">
+        硬盘迁移
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../5/">
+        vGPU教程
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../6/">
+        功耗节能
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
+          软路由
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="软路由" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+          软路由
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../5/1/">
+        基本操作
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../5/2/">
+        硬盘扩容
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../5/3/">
+        OpenClash
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../5/4.md">
+        IPv6 配置
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7">
+          黑群晖
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="黑群晖" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+          黑群晖
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/1/">
+        基本安装
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/2/">
+        存储划分
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/3/">
+        SSD缓存
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/4/">
+        CPU修正
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/5/">
+        直通独显
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/6/">
+        远程访问
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/7/">
+        添加证书
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/8/">
+        WebDAV
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/9/">
+        安装 alist
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/10/">
+        终端美化
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/11/">
+        Docker与IPv6
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" id="__nav_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8">
+          黑苹果
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="黑苹果" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
+<span class="md-nav__icon md-icon"></span>
+          黑苹果
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../7/1/">
+        准备工作
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../7/2/">
+        修正配置
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../7/3/">
+        系统安装
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../7/4/">
+        系统优化
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" id="__nav_9" type="checkbox"/>
+<label class="md-nav__link" for="__nav_9">
+          远程穿透
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="远程穿透" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_9">
+<span class="md-nav__icon md-icon"></span>
+          远程穿透
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../8/1/">
+        NAT类型
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../8/2/">
+        ZeroTier
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../8/3/">
+        IPv6 DDNS
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../8/4/">
+        远程桌面
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" id="__nav_10" type="checkbox"/>
+<label class="md-nav__link" for="__nav_10">
+          IPv6 专题
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="IPv6 专题" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_10">
+<span class="md-nav__icon md-icon"></span>
+          IPv6 专题
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/1/">
+        IPv6 基础
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/2/">
+        IPv6 场景
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/3/">
+        IPv6 使用
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/4/">
+        IPv6 普及
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/5/">
+        IPv6与光猫
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    脚本实现
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    手工实现
+  </a>
+<nav aria-label="手工实现" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#iommu">
+    检测 IOMMU 是否开启
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#iommu-sr-iov">
+    开启 IOMMU 和 SR-IOV
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vfio">
+    添加 VFIO 模块
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#iommu_1">
+    IOMMU 中断重映射
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ovmf">
+    OVMF 下显卡直通
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    防止虚拟机崩溃
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/sqlsec/PVE/edit/main/docs/4/2.md" title="编辑此页">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1>硬件直通</h1>
+<h2 id="_1">脚本实现<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>硬件直通的话，Github 上面已经有成熟的脚本了。</p>
+<p>项目地址为：<a href="https://github.com/ivanhao/pvetools">https://github.com/ivanhao/pvetools</a></p>
+<p>在通外网的情况下，可以一键安装运行，操作十分简单，细节不再赘述：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nb">echo</span> <span class="s2">"nameserver  8.8.8.8"</span> &gt;&gt; /etc/resolv.conf <span class="o">&amp;&amp;</span> rm /etc/apt/sources.list.d/pve-enterprise.list <span class="o">&amp;&amp;</span> <span class="nb">export</span> <span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8 <span class="o">&amp;&amp;</span> apt update <span class="o">&amp;&amp;</span> apt -y install git <span class="o">&amp;&amp;</span> git clone https://github.com/ivanhao/pvetools.git <span class="o">&amp;&amp;</span> <span class="nb">cd</span> pvetools <span class="o">&amp;&amp;</span> ./pvetools.sh
+</code></pre></div>
+<h2 id="_2">手工实现<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>但是，既然写教程了，肯定还是要说一下如何手工配置硬件直通。</p>
+<h3 id="iommu">检测 IOMMU 是否开启<a class="headerlink" href="#iommu" title="Permanent link">¶</a></h3>
+<p>开启 IOMMU 后，BIOS 可以收集 IOMMU 硬件相关的信息以及它和 PCIe 设备连接关系的信息，使用如下命令检测是否开启，如果开启 IOMMU 的话可以看到一些 PCIe 硬件设备：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>dmesg <span class="p">|</span> grep -e DMAR -e IOMMU
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">未开启 IOMMU</label><label for="__tabbed_1_2">开启 IOMMU</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221128/16695653049561.png"><img alt="" src="https://image.3001.net/images/20221128/16695653049561.png"/></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221128/16695656836933.png"><img alt="" src="https://image.3001.net/images/20221128/16695656836933.png"/></a> </p>
+</div>
+</div>
+</input></input></div>
+<h3 id="iommu-sr-iov">开启 IOMMU 和 SR-IOV<a class="headerlink" href="#iommu-sr-iov" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>IOMMU 是 Intel VT-d 和 AMD-Vi 的通用名称。</p>
+</blockquote>
+<p>先备份一下 grub 文件：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>cp /etc/default/grub /etc/default/grub.bak
+</code></pre></div>
+<p>然后修改 <code>/etc/default/grub</code> 文件：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>nano /etc/default/grub
+</code></pre></div>
+<p>将：<code>GRUB_CMDLINE_LINUX_DEFAULT="quiet"</code> 下面我们主要根据自己的平台来修改这一行配置。</p>
+<details class="info">
+<summary>硬件直通可能需要用到的一些常见参数解释......  点击展开表格 👉</summary>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>quiet</td>
+<td>默认参数，表示在启动过程中只显示重要信息</td>
+</tr>
+<tr>
+<td>intel_iommu=on</td>
+<td>用 intel_iommu 驱动来驱动 IOMMU 硬件单元</td>
+</tr>
+<tr>
+<td>amd_iommu=on</td>
+<td>用 amd_iommu 驱动来驱动 IOMMU 硬件单元</td>
+</tr>
+<tr>
+<td>iommu=pt</td>
+<td>只为使用透传功能的设备启用 IOMMU，并可以提供更好的功能和性能</td>
+</tr>
+<tr>
+<td>pci=assign-busses</td>
+<td>部分网卡开启 SR-IOV 需要这个参数，否则可能报错</td>
+</tr>
+<tr>
+<td>PCIe_acs_override=downstream</td>
+<td>用于将 iommu groups 拆分，方便灵活按需直通一些板载的设备</td>
+</tr>
+<tr>
+<td>PCIe_acs_override=multifunction</td>
+<td>PCIe 直通多功能支持，提高直通完美度（可选）</td>
+</tr>
+<tr>
+<td>nofb</td>
+<td>该选项允许你不用一个frame缓冲来使用图形安装程序</td>
+</tr>
+<tr>
+<td>textonly</td>
+<td>仅在文本模式下支持 GRUB 串行控制台</td>
+</tr>
+<tr>
+<td>nomodeset</td>
+<td>系统启动过程中，暂时不运行图像驱动程序</td>
+</tr>
+<tr>
+<td>video=vesafb:off</td>
+<td>禁用 vesa 启动显示设备</td>
+</tr>
+<tr>
+<td>video=efifb:off</td>
+<td>禁用 efi 启动显示设备</td>
+</tr>
+<tr>
+<td>video=simplefb:off</td>
+<td>5.15 内核开始直通可能需要这个参数</td>
+</tr>
+<tr>
+<td>initcall_blacklist=sysfb_init</td>
+<td>部分 A 卡如 RX580 直通异常可能需要这个参数</td>
+</tr>
+<tr>
+<td>pcie_aspm=off</td>
+<td>关闭 PCIe 设备的 ASPM 节能模式，解决部分 PCIe 设备 AER 报错</td>
+</tr>
+<tr>
+<td>pcie_aspm=force</td>
+<td>强制 PCIe 设备及爱情 ASPM 节能模式，解决部分 PCIe 设备 AER 报错</td>
+</tr>
+<tr>
+<td>pci=noaer</td>
+<td>不输出 AER 报错日志，华南主板经常会 AER 报错，建议配合使用，眼不见心不烦</td>
+</tr>
+<tr>
+<td>pci=nomsi</td>
+<td>在系统范围内禁用 MSI 中断，主要还是解决 PCIe 相关的报错</td>
+</tr>
+<tr>
+<td>pci=nommconf</td>
+<td>解决 PCIe 相关的报错，PCIe Bus Error 等，华南主板可能需要这个参数</td>
+</tr>
+</tbody>
+</table>
+</details>
+<ul>
+<li>Intel 平台 修改为：</li>
+</ul>
+<div class="highlight"><span class="filename">INI</span><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="na">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s">"quiet intel_iommu=on iommu=pt textonly nomodeset nofb pci=noaer pcie_acs_override=downstream,multifunction"</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li>AMD 平台 修改为：</li>
+</ul>
+<div class="highlight"><span class="filename">INI</span><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="na">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s">"quiet amd_iommu=on iommu=pt textonly nomodeset nofb pci=noaer pcie_acs_override=downstream,multifunction"</span><span class="w"></span>
+</code></pre></div>
+<details class="warning">
+<summary>部分显卡如 RX580 直通的时候稍微不一样，得使用 <strong>initcall_blacklist=sysfb_init</strong> 替代 video 系列参数</summary>
+<p><div class="highlight"><span class="filename">INI</span><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="na">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s">"quiet intel_iommu=on iommu=pt pci=assign-busses pcie_acs_override=downstream,multifunction nofb textonly nomodeset initcall_blacklist=sysfb_init"</span><span class="w"></span>
+</code></pre></div>
+否则大概率会卡 <strong>Failed to mmap 0000:xxx:00.0 BAR 0. Performance may be slow</strong></p>
+</details>
+<p>改完之后更新一下 grub 并重启：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>update-grub <span class="o">&amp;&amp;</span> reboot
+</code></pre></div>
+<p>使用如下命令查看是否拆分了 iommu groups：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>ls -l /sys/kernel/iommu_groups/*/devices
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">未拆分 iommu groups</label><label for="__tabbed_2_2">已拆分 iommu groups</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221128/16695678959296.png"><img alt="" src="https://image.3001.net/images/20221128/16695678959296.png"/></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221128/16695678279862.png"><img alt="" src="https://image.3001.net/images/20221128/16695678279862.png"/></a> </p>
+</div>
+</div>
+</input></input></div>
+<h3 id="vfio">添加 VFIO 模块<a class="headerlink" href="#vfio" title="Permanent link">¶</a></h3>
+<p>为了我们的显卡顺利直通，需要添加 VFIO 模块到 <strong>/etc/modules</strong> 文件中：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="nb">echo</span> <span class="s2">"vfio"</span> &gt; /etc/modules
+<a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="nb">echo</span> <span class="s2">"vfio_iommu_type1s"</span> &gt;&gt; /etc/modules
+<a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="nb">echo</span> <span class="s2">"vfio_pci"</span> &gt;&gt; /etc/modules
+<a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="nb">echo</span> <span class="s2">"vfio_virqfd"</span> &gt;&gt; /etc/modules
+</code></pre></div>
+<p>将常见的驱动程序加入黑名单，即让 GPU 相关设备在下次系统启动之后不使用这些驱动，把设备腾出来给 vfio 驱动用：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="nb">echo</span> <span class="s2">"blacklist nvidiafb"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="nb">echo</span> <span class="s2">"blacklist nouveau"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="nb">echo</span> <span class="s2">"blacklist nvidia"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="nb">echo</span> <span class="s2">"blacklist radeon"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="nb">echo</span> <span class="s2">"blacklist amdgpu"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-10-6" id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="nb">echo</span> <span class="s2">"blacklist snd_hda_intel"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-10-7" id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="nb">echo</span> <span class="s2">"blacklist snd_hda_codec_hdmi"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+<a href="#__codelineno-10-8" id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="nb">echo</span> <span class="s2">"blacklist i915"</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+</code></pre></div>
+<p>然后更新内核重启机器：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>update-initramfs -u <span class="o">&amp;&amp;</span> reboot
+</code></pre></div>
+<p>重启后，检查之前配置的 VFIO 模块是否正常加载：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>lsmod <span class="p">|</span>grep vfio
+</code></pre></div>
+<p>下图这样表示是成功加载了的。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221211/16707611391306.png"><img alt="" src="https://image.3001.net/images/20221211/16707611391306.png"/></a> </p>
+<h3 id="iommu_1">IOMMU 中断重映射<a class="headerlink" href="#iommu_1" title="Permanent link">¶</a></h3>
+<p>如果没有中断重新映射，将无法使用 PCI 直通。所有使用支持英特尔定向 I/O 虚拟化技术 (VT-d) 但不支持中断重新映射的英特尔处理器和芯片组的系统都报错。较新的处理器和芯片组（AMD 和 Intel）都提供了中断重新映射支持。</p>
+<p>可以使用如下命令来确定系统是否支持中断重映射：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a>dmesg <span class="p">|</span> grep <span class="s1">'remapping'</span>
+</code></pre></div>
+<p>如果看到类似下面的内容之一：</p>
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a>"AMD-Vi: Interrupt remapping enabled"
+<a href="#__codelineno-14-2" id="__codelineno-14-2" name="__codelineno-14-2"></a>"DMAR-IR: Enabled IRQ remapping in x2apic mode"
+</code></pre></div>
+<blockquote>
+<p>x2apic 在不同的 CPU 上可能叫法不一样，问题不大。</p>
+<p>另外如果你的 CPU 不支持 x2apic 的话，可能是 BIOS 没有开启，我的华南 X99 是需要手动在 BIOS 里面开启的：在 【InterRCSetup】 - 【Processor Configuration】 里面可以打开 <strong>X2APIC</strong> 选项。</p>
+</blockquote>
+<p>可以看到我们的 IOMMU 是支持中断映射的：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221211/1670761098251.png"><img alt="" src="https://image.3001.net/images/20221211/1670761098251.png"/></a> </p>
+<p>如果很不巧，你的电脑真的不支持 IOMMU 中断重映射的话，可以使用下面的命令修补一下：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="nb">echo</span> <span class="s2">"options vfio_iommu_type1 allow_unsafe_interrupts=1"</span> &gt; /etc/modprobe.d/iommu_unsafe_interrupts.conf
+</code></pre></div>
+<h3 id="ovmf">OVMF 下显卡直通<a class="headerlink" href="#ovmf" title="Permanent link">¶</a></h3>
+<p>虚拟机的 BIOS 推荐为 <strong>OVMF</strong> 替代默认的 SeaBIOS。不过 OVMF 走的 UEFI 只支持高版本的 Windows （win &gt;=8）,另外机型推荐为：<strong>q35</strong></p>
+<p>首先查找显卡相关的 ID：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a>lspci -nn <span class="p">|</span> grep -E <span class="s2">"Display|VGA|Audio|AMD|NVIDIA"</span>
+</code></pre></div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230112/16734894588141.png"><img alt="" src="https://image.3001.net/images/20230112/16734894588141.png"/></a> </p>
+<p>除了第 1 个是主板自带的声卡以外，下面这 7 个 ID就是我显卡相关的 ID 了（多个 ID 使用逗号隔开）：</p>
+<div class="highlight"><span class="filename">INI</span><pre><span></span><code><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="na">10de:0fc2,10de:0e1b,10de:1bb3,10de:2487,10de:228b,1002:67df,1002:aaf0</span><span class="w"></span>
+</code></pre></div>
+<p>将上面查找的 ID 数据带入到下面的 <strong>ids</strong> 后面，如果使用 OVMF 的话，还建议将 <strong>disable_vga=1</strong> 添加到 vfio-pci 模块：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="nb">echo</span> <span class="s2">"options vfio-pci ids=10de:0fc2,10de:0e1b,10de:1bb3,10de:2487,10de:228b,1002:67df,1002:aaf0 disable_vga=1"</span> &gt; /etc/modprobe.d/vfio.conf
+</code></pre></div>
+<p>重启之后即可直接直通显卡和各种 PCIe 设备了，另外还有提醒一下， OVMF 模式下直通 GPU 的话，有些卡还需要 romfile 参数来指定显卡原本的  ROM (bios)文件才可以：</p>
+<div class="highlight"><span class="filename">INI</span><pre><span></span><code><a href="#__codelineno-19-1" id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="na">hostpci0: 01:00,x-vga</span><span class="o">=</span><span class="s">on,romfile=vbios.rom</span><span class="w"></span>
+</code></pre></div>
+<details class="info" open="open">
+<summary>提取显卡的原始 ROM </summary>
+<ol>
+<li>通用方法：Windows 下使用 GPU-Z 来保存显卡的 ROM 文件</li>
+<li>下载网上的 ROM 文件, ROM 分享下载网站：https://www.techpowerup.com/vgabios/</li>
+</ol>
+</details>
+<div class="admonition note">
+<p class="admonition-title">部分显卡不需要 romfile 参数也可以直通</p>
+<ol>
+<li>AMD RX400、RX500 系列测试无需 romfile 参数也可以直通</li>
+<li>AMD RX5000、RX6000 系列大多数需要 romfile 参数才可以顺利直通</li>
+</ol>
+</div>
+<h3 id="_3">防止虚拟机崩溃<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<p>某些 Windows 应用程序（如 Geforce Experience、Passmark Performance Test 和 SiSoftware Sandra crash）可能会使虚拟机崩溃。以及为了避免在PVE 下 macOS 黑苹果引导期间出现引导循环死机，我们需要添加：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a href="#__codelineno-20-1" id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="nb">echo</span> <span class="s2">"options kvm ignore_msrs=1 report_ignored_msrs=0"</span> &gt; /etc/modprobe.d/kvm.conf <span class="o">&amp;&amp;</span> update-initramfs -k all -u <span class="o">&amp;&amp;</span> reboot
+</code></pre></div>
+<p>其中 report_ignored_msrs=0 是为了防止控制台刷屏看到很多很多警告消息用的，修改完成重启 PVE 即可。</p>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      最后更新:
+      2023-03-06
+    
+  </small>
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: 添加硬盘" class="md-footer__link md-footer__link--prev" href="../1/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                上一页
+              </span>
+              添加硬盘
+            </div>
+</div>
+</a>
+<a aria-label="下一页: 配置证书" class="md-footer__link md-footer__link--next" href="../3/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                下一页
+              </span>
+              配置证书
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright ©  国光
+    </div>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://www.sqlsec.com" rel="noopener" target="_blank" title="国光">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M341.52 285.56c33.65 0 82.34-6.94 82.34-47 .22-6.74.86-1.82-20.88-96.24-4.62-19.15-8.68-27.84-42.31-44.65-26.09-13.34-82.92-35.37-99.73-35.37-15.66 0-20.2 20.17-38.87 20.17-18 0-31.31-15.06-48.12-15.06-16.14 0-26.66 11-34.78 33.62-27.5 77.55-26.28 74.27-26.12 78.27 0 24.8 97.64 106.11 228.47 106.11M429 254.84c4.65 22 4.65 24.35 4.65 27.25 0 37.66-42.33 58.56-98 58.56-125.74.08-235.91-73.65-235.91-122.33a49.55 49.55 0 0 1 4.06-19.72C58.56 200.86 0 208.93 0 260.63c0 84.67 200.63 189 359.49 189 121.79 0 152.51-55.08 152.51-98.58 0-34.21-29.59-73.05-82.93-96.24"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "search.suggest", "search.highlight", "search.share", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../assets/javascripts/bundle.d691e9de.min.js"></script>
+<script async="async" data-fontsize="15px" data-mobile="false" data-random="false" data-text="OpenCore,Hackintosh,DSDT,SSDT,Kernel,Kexts,UEFI,NVRAM,BIOS,ACPI,Clover,AWAC,XOSI,Lilu.kext,VirtualSMC.kext,WhateverGreen.kext" id="click-show-text" src="https://html.sqlsec.com/click-show-text.min.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

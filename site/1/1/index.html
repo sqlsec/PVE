@@ -1,16 +1,16 @@
-<!-- Elements added to main will be displayed on all pages -->
+
 <!DOCTYPE html>
 
 <html class="no-js" lang="zh">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="国光的 PVE &amp; Linux 生产力环境搭建教程" name="description"/>
+<meta content="国光的 PVE 环境搭建教程" name="description"/>
 <meta content="国光" name="author"/>
 <link href="https://pve.sqlsec.com/1/1/" rel="canonical"/>
 <link href="https://image.3001.net/images/20200922/16007336487809.jpg" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-8.5.1" name="generator"/>
-<title>硬件配置 - 国光的 PVE &amp; Linux 生产力环境搭建教程</title>
+<title>硬件配置 - 国光的 PVE 环境搭建教程</title>
 <link href="../../assets/stylesheets/main.2e8b5541.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -40,7 +40,7 @@
 </div>
 <header class="md-header md-header--lifted" data-md-component="header">
 <nav aria-label="页眉" class="md-header__inner md-grid">
-<a aria-label="国光的 PVE &amp; Linux 生产力环境搭建教程" class="md-header__button md-logo" data-md-component="logo" href="../.." title="国光的 PVE &amp; Linux 生产力环境搭建教程">
+<a aria-label="国光的 PVE 环境搭建教程" class="md-header__button md-logo" data-md-component="logo" href="../.." title="国光的 PVE 环境搭建教程">
 <svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2zm257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6zM173.3 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5z"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -50,7 +50,7 @@
 <div class="md-header__ellipsis">
 <div class="md-header__topic">
 <span class="md-ellipsis">
-            国光的 PVE &amp; Linux 生产力环境搭建教程
+            国光的 PVE 环境搭建教程
           </span>
 </div>
 <div class="md-header__topic" data-md-component="header-topic">
@@ -65,11 +65,11 @@
 <form class="md-header__option" data-md-component="palette">
 <input aria-label="切换深色模式" class="md-option" data-md-color-accent="indigo" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_2" hidden="" title="切换深色模式">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
 </label>
 <input aria-label="切换浅色模式" class="md-option" data-md-color-accent="blue" data-md-color-media="" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_1" hidden="" title="切换浅色模式">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
 </label>
 </form>
 <label class="md-header__button md-icon" for="__search">
@@ -130,6 +130,46 @@
         准备工作
       </a>
 </li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../2/1/">
+        PVE 基础
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../3/1/">
+        网络划分
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../4/1/">
+        PEV 进阶
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../5/1/">
+        软路由
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../6/1/">
+        黑群晖
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../7/1/">
+        黑苹果
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../8/1/">
+        远程穿透
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../9/1/">
+        IPv6 专题
+      </a>
+</li>
 </ul>
 </div>
 </nav>
@@ -142,10 +182,10 @@
 <div class="md-sidebar__inner">
 <nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="国光的 PVE &amp; Linux 生产力环境搭建教程" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="国光的 PVE &amp; Linux 生产力环境搭建教程">
+<a aria-label="国光的 PVE 环境搭建教程" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="国光的 PVE 环境搭建教程">
 <svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2zm257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6zM173.3 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5z"></path></svg>
 </a>
-    国光的 PVE &amp; Linux 生产力环境搭建教程
+    国光的 PVE 环境搭建教程
   </label>
 <div class="md-nav__source">
 <a class="md-source" data-md-component="source" href="https://github.com/sqlsec/PVE" title="前往仓库">
@@ -191,12 +231,12 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
+<a class="md-nav__link" href="#_1">
     硬件详情
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
+<a class="md-nav__link" href="#_2">
     选购理由
   </a>
 <nav aria-label="选购理由" class="md-nav">
@@ -207,27 +247,27 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
+<a class="md-nav__link" href="#_3">
     主板
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
+<a class="md-nav__link" href="#_4">
     显卡
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_6">
+<a class="md-nav__link" href="#_5">
     内存
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_7">
+<a class="md-nav__link" href="#_6">
     机箱
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
+<a class="md-nav__link" href="#_7">
     硬盘
   </a>
 </li>
@@ -235,7 +275,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_9">
+<a class="md-nav__link" href="#_8">
     外设配置
   </a>
 </li>
@@ -260,6 +300,336 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3">
+          PVE 基础
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="PVE 基础" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          PVE 基础
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/1/">
+        BIOS设置
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/2/">
+        系统安装
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/3/">
+        基础设置
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/4/">
+        常用命令
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/5/">
+        来宾代理
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../2/6/">
+        华南排错
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
+          网络划分
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="网络划分" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          网络划分
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../3/1/">
+        网络架构
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../3/2/">
+        网络实战
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5">
+          PEV 进阶
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="PEV 进阶" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          PEV 进阶
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../4/1/">
+        添加硬盘
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../4/2/">
+        硬件直通
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../4/3/">
+        配置证书
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../4/4/">
+        硬盘迁移
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../4/5/">
+        vGPU教程
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../4/6/">
+        功耗节能
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
+          软路由
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="软路由" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+          软路由
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../5/1/">
+        基本操作
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../5/2/">
+        硬盘扩容
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../5/3/">
+        OpenClash
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../5/4.md">
+        IPv6 配置
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7">
+          黑群晖
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="黑群晖" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+          黑群晖
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/1/">
+        基本安装
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/2/">
+        存储划分
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/3/">
+        SSD缓存
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/4/">
+        CPU修正
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/5/">
+        直通独显
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/6/">
+        远程访问
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/7/">
+        添加证书
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/8/">
+        WebDAV
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/9/">
+        安装 alist
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/10/">
+        终端美化
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../6/11/">
+        Docker与IPv6
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" id="__nav_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8">
+          黑苹果
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="黑苹果" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
+<span class="md-nav__icon md-icon"></span>
+          黑苹果
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../7/1/">
+        准备工作
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../7/2/">
+        修正配置
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../7/3/">
+        系统安装
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../7/4/">
+        系统优化
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" id="__nav_9" type="checkbox"/>
+<label class="md-nav__link" for="__nav_9">
+          远程穿透
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="远程穿透" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_9">
+<span class="md-nav__icon md-icon"></span>
+          远程穿透
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../8/1/">
+        NAT类型
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../8/2/">
+        ZeroTier
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../8/3/">
+        IPv6 DDNS
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../8/4/">
+        远程桌面
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" id="__nav_10" type="checkbox"/>
+<label class="md-nav__link" for="__nav_10">
+          IPv6 专题
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="IPv6 专题" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_10">
+<span class="md-nav__icon md-icon"></span>
+          IPv6 专题
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/1/">
+        IPv6 基础
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/2/">
+        IPv6 场景
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/3/">
+        IPv6 使用
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/4/">
+        IPv6 普及
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../9/5/">
+        IPv6与光猫
+      </a>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </div>
@@ -275,12 +645,12 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
+<a class="md-nav__link" href="#_1">
     硬件详情
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
+<a class="md-nav__link" href="#_2">
     选购理由
   </a>
 <nav aria-label="选购理由" class="md-nav">
@@ -291,27 +661,27 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
+<a class="md-nav__link" href="#_3">
     主板
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
+<a class="md-nav__link" href="#_4">
     显卡
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_6">
+<a class="md-nav__link" href="#_5">
     内存
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_7">
+<a class="md-nav__link" href="#_6">
     机箱
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
+<a class="md-nav__link" href="#_7">
     硬盘
   </a>
 </li>
@@ -319,7 +689,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_9">
+<a class="md-nav__link" href="#_8">
     外设配置
   </a>
 </li>
@@ -333,196 +703,434 @@
 <a class="md-content__button md-icon" href="https://github.com/sqlsec/PVE/edit/main/docs/1/1.md" title="编辑此页">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="_1">硬件配置<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
-<h2 id="_2">硬件详情<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p>本次硬件总价 1w 多一点，下面是硬件的详细清单：</p>
+<h1>硬件配置</h1>
+<h2 id="_1">硬件详情<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>本次硬件总价 <strong>￥14800</strong> 左右，下面是硬件的详细清单，价格为国光我当初入手的价格，仅供大家参考：</p>
 <table>
 <thead>
 <tr>
 <th align="left">硬件</th>
 <th align="left">型号</th>
+<th align="left">参考价</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td align="left"><strong>CPU</strong></td>
 <td align="left">Intel E5 2696 V4  * 2 路 共 44 核 88 线程</td>
+<td align="left">￥1930</td>
 </tr>
 <tr>
 <td align="left"><strong>主板</strong></td>
 <td align="left">华南 X99 F8D PLUS</td>
+<td align="left">￥938</td>
 </tr>
 <tr>
 <td align="left"><strong>内存</strong></td>
 <td align="left">三星 REG ECC DDR4 2400Mhz 32GB * 8 条 共 256GB</td>
+<td align="left">￥3192</td>
 </tr>
 <tr>
 <td align="left"><strong>显卡-1</strong></td>
-<td align="left">蓝宝石 AMD RX 6600XT</td>
+<td align="left">电竞叛客 RTX 3060 X2W LHR 12G</td>
+<td align="left">￥1599</td>
 </tr>
 <tr>
 <td align="left"><strong>显卡-2</strong></td>
-<td align="left">戴尔 AMD RX 5300 3GB 绝版 OEM 短卡</td>
+<td align="left">蓝宝石 超白金 RX580 8GB 2304SP</td>
+<td align="left">￥310</td>
 </tr>
 <tr>
-<td align="left"><strong>硬盘-1</strong></td>
-<td align="left">西数 SN550 NVEM 协议  SSD 1TB</td>
+<td align="left"><strong>显卡-3</strong></td>
+<td align="left">NVIDIA Tesla P4 8GB 计算卡</td>
+<td align="left">￥432</td>
 </tr>
 <tr>
-<td align="left"><strong>硬盘-2</strong></td>
+<td align="left"><strong>NVME-SSD-1</strong></td>
+<td align="left">西数 SN570 NVEM 协议  SSD 1TB</td>
+<td align="left">￥460</td>
+</tr>
+<tr>
+<td align="left"><strong>NVME-SSD-2</strong></td>
 <td align="left">西数 SN570 NVEM 协议 SSD 1TB</td>
+<td align="left">￥574</td>
 </tr>
 <tr>
-<td align="left"><strong>硬盘-3</strong></td>
-<td align="left">樊想 S500 NVEM 协议 SSD 1TB</td>
+<td align="left"><strong>NVME-SSD-3</strong></td>
+<td align="left">樊想 S500 Pro NVEM 协议 SSD 1TB</td>
+<td align="left">￥368</td>
 </tr>
 <tr>
-<td align="left"><strong>硬盘-4</strong></td>
+<td align="left"><strong>NVME-SSD-4</strong></td>
 <td align="left">爱国者 P3000 Pro NVEM 协议 SSD 1TB</td>
+<td align="left">￥489</td>
 </tr>
 <tr>
-<td align="left"><strong>硬盘-5</strong></td>
+<td align="left"><strong>NVME-SSD-5</strong></td>
+<td align="left">GeIL金邦 P4L PCIe 4.0 NVEM 协议 SSD 1TB</td>
+<td align="left">￥350</td>
+</tr>
+<tr>
+<td align="left"><strong>NVME-SSD-6</strong></td>
+<td align="left">西数 SN550 250GB</td>
+<td align="left">￥148</td>
+</tr>
+<tr>
+<td align="left"><strong>SATA-SSD-1</strong></td>
 <td align="left">镁光 M600 SSD 绝版 MLC 颗粒 SATA  协议  SSD 1TB</td>
+<td align="left">￥299</td>
 </tr>
 <tr>
-<td align="left"><strong>硬盘-6</strong></td>
+<td align="left"><strong>SATA-SSD-2</strong></td>
 <td align="left">樊想 FP325 系列 SSD SATA 协议 SSD 256GB</td>
+<td align="left">￥96</td>
 </tr>
 <tr>
-<td align="left"><strong>硬盘-7</strong></td>
-<td align="left">希捷酷鹰 ST4000VX007  垂直非叠瓦 HDD 4TB</td>
+<td align="left"><strong>HDD-1</strong></td>
+<td align="left">希捷 ST1000DM003 1TB</td>
+<td align="left">￥112</td>
+</tr>
+<tr>
+<td align="left"><strong>HDD-2</strong></td>
+<td align="left">西数 WD10EZEX-08M2NA0</td>
+<td align="left">￥100</td>
+</tr>
+<tr>
+<td align="left"><strong>HDD-3</strong></td>
+<td align="left">希捷 ST2000VX008 2TB</td>
+<td align="left">￥499</td>
+</tr>
+<tr>
+<td align="left"><strong>HDD-4</strong></td>
+<td align="left">希捷 ST2000VX008 2TB</td>
+<td align="left">￥499</td>
 </tr>
 <tr>
 <td align="left"><strong>电源</strong></td>
 <td align="left">海盗船 RM 1000X 额定 1000W</td>
+<td align="left">￥725</td>
 </tr>
 <tr>
 <td align="left"><strong>散热</strong></td>
-<td align="left">华南冰剑（6热管） A700 *2</td>
+<td align="left">华南冰剑（6热管） A700 *2 + 先马游戏风暴 * 2 改成功了双塔双风</td>
+<td align="left">￥185</td>
 </tr>
 <tr>
 <td align="left"><strong>风扇</strong></td>
-<td align="left">先马游戏风暴 * 7 + 雷匠 12cm 定彩</td>
+<td align="left">先马游戏风暴 * 9 + 1个 雷匠 12cm 定彩 + 1个 不知名的 ARGB 12cm</td>
+<td align="left">￥110</td>
 </tr>
 <tr>
-<td align="left"><strong>网卡</strong></td>
-<td align="left">Intel 无线网卡 占用了 1个 PCIE 通道 ，未来可以直通到 Windows 使用蓝牙外接手柄</td>
+<td align="left"><strong>无线网卡1</strong></td>
+<td align="left">Fenvi T919 简版 BCM94360CD 芯片 四天线（黑果顶级免驱无线网卡）</td>
+<td align="left">￥138.52</td>
+</tr>
+<tr>
+<td align="left"><strong>无线网卡1</strong></td>
+<td align="left">Gengxun BCM94360CD 芯片 四天线（黑果顶级免驱无线网卡）</td>
+<td align="left">￥165</td>
 </tr>
 <tr>
 <td align="left"><strong>机箱</strong></td>
-<td align="left">爱国者 T16</td>
+<td align="left">追风者 PK620 EEB 机箱非侧透版本 + 定制亚力克侧透版 （总价比侧透版本便宜）</td>
+<td align="left">￥637</td>
+</tr>
+<tr>
+<td align="left"><strong>配件1</strong></td>
+<td align="left">西数 AN1500 RAID 1 NVME 阵列卡</td>
+<td align="left">￥90</td>
+</tr>
+<tr>
+<td align="left"><strong>配件2</strong></td>
+<td align="left">PCIe 拆分卡 x16 转 x8x4x4</td>
+<td align="left">￥107</td>
+</tr>
+<tr>
+<td align="left"><strong>配件3</strong></td>
+<td align="left">连拓 USB 外置声卡 * 2</td>
+<td align="left">￥20</td>
+</tr>
+<tr>
+<td align="left"><strong>配件4</strong></td>
+<td align="left">CSR V4.0 USB 蓝牙接收器</td>
+<td align="left">￥9.8</td>
+</tr>
+<tr>
+<td align="left"><strong>配件5</strong></td>
+<td align="left">PCIe x16 延长线 2 根 + PCIe x8 延长线 1 根</td>
+<td align="left">￥50</td>
+</tr>
+<tr>
+<td align="left"><strong>配件6</strong></td>
+<td align="left">USB 3.0 Hub 一拖四</td>
+<td align="left">￥60</td>
+</tr>
+<tr>
+<td align="left"><strong>X540 网卡散热</strong></td>
+<td align="left">￥9.12 的 4.5cm 涡轮 小风扇 + ￥12 的 台达 5cm 小风扇 + ￥18 捷冷 涡轮 FOX-1 风扇</td>
+<td align="left">￥39.12</td>
+</tr>
+<tr>
+<td align="left"><strong>Tesla P4 散热</strong></td>
+<td align="left">6000转 台达三线双滚珠涡轮风扇  + 3D 打印支架</td>
+<td align="left">￥38.88</td>
+</tr>
+<tr>
+<td align="left"><strong>散热小配件</strong></td>
+<td align="left">￥15 变速器降速线 + ￥12.98  红50% 降速、蓝40%降速线、 白 30%降速线  + ￥7.52 的 2根 3P一分二 线</td>
+<td align="left">￥35.5</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_3">选购理由<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h2 id="_2">选购理由<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <h3 id="cpu">CPU<a class="headerlink" href="#cpu" title="Permanent link">¶</a></h3>
 <p>首先最关键的是 CPU，因为大船靠岸的原因，E5 2696 V4 的价格也逐渐平民化，组个双路 E5 的总价也不过 2000 块钱，性价比十分的高。单颗 E5 2696 V4 是 22 核 44 线程，组双路就是 44 核 88 线程，虽然这个 U 的频率低了一点，但是总共 88 线程这块跑渲染还是很强的， R23 多核跑分高达 32371 分，这个分数已经吊打了 i9-12900 了：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221124/16693012165563.jpg"><img alt="" src="https://image.3001.net/images/20221124/16693012165563.jpg"/></a> </p>
-<h3 id="_4">主板<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<h3 id="_3">主板<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <p>一开始想考虑 X99 黑苹果的，没太想组双路，当时上的是<strong>华南 X99-F8</strong> 单路主板：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221124/16693022848567.jpg"><img alt="" src="https://image.3001.net/images/20221124/16693022848567.jpg"/></a> </p>
 <p>但是这个主板也有很多缺点：</p>
 <ol>
 <li>不是双网口</li>
-<li>PCIE 通道比较少</li>
+<li>PCIe 通道比较少</li>
 <li>NVME 速度阉割严重</li>
 <li>内存兼容性这块也不是很好</li>
 <li>黑苹果这块坑点玄学问题也很多</li>
 </ol>
-<p>最后一咬牙就加钱换了华南目前最强的 X99 平台<strong>双路</strong>主板：<strong>华南 X99 F8D PLUS</strong>，这个主板的扩展性很强，双 RJ45 网卡，而且也支持好多个 PCIE 扩展和 3 个 NVME，内存最大支持 64GB * 8 = 512GB 内存，关键是价格不到 1000 元，性价比我觉得还是蛮高的了：</p>
+<p>最后一咬牙就加钱换了华南目前最强的 X99 平台<strong>双路</strong>主板：<strong>华南 X99 F8D PLUS</strong>，这个主板的扩展性很强，双 RJ45 网卡，而且也支持好多个 PCIe 扩展和 3 个 NVME，内存最大支持 64GB * 8 = 512GB 内存，关键是价格不到 1000 元，性价比我觉得还是蛮高的了：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221124/16693017616929.jpg"><img alt="" src="https://image.3001.net/images/20221124/16693017616929.jpg"/></a> </p>
-<h3 id="_5">显卡<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
-<p>因为是黑苹果资深用户，所以一直青睐于 A 卡，手上的 A 卡有：RX 6600XT、RX 5700、RX 5300、RX 580：</p>
+<h3 id="_4">显卡<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<p>因为是黑苹果资深用户，所以一直青睐于 A 卡，因为今年矿难了，显卡价格便宜不少，所以目前我的 PVE 设备更换过不少显卡：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221124/16693032719218.jpg"><img alt="" src="https://image.3001.net/images/20221124/16693032719218.jpg"/></a> </p>
-<p>因为显卡都是 2 槽的，我的主机最多只能放两张显卡，考虑到性能体验和功耗问题，最终主机里面放的显卡是：RX 6600XT 和 RX 5300，都是两张功耗非常低的卡，而且性能也不弱。</p>
-<p>下面是几张卡的未来规划：</p>
+<p>下面是这些卡本来的未来规划：</p>
 <ul>
-<li><strong>RX 6600XT</strong>：PVE 下直通给 Windows 或者 macOS 使用，Windows 打游戏，macOS 下可能是高强度剪辑</li>
-<li><strong>RX 5700</strong>：矿难的时候不到 600 块钱收的，就是图便宜，后面发现我好像用不到，就原价送给朋友了</li>
-<li><strong>RX 5300</strong>：这个卡主要绝版了，一直舍不得出，而且功耗非常低，未来打算主要用于 PVE 下直通 macOS 使用</li>
-<li><strong>RX 580</strong>：矿难闲鱼上 200 多块钱收的 588，虽然是 2048SP，但是体质（ 99.7%）很棒，目前放在我的 i7-10700 主机里面使用</li>
+<li><strong>RX 6600XT</strong>：PVE 下直通给 macOS VM 使用，也可以直通给 Windows VM 打游戏使用（￥1300 出掉给朋友了）</li>
+<li><strong>RX 5700</strong>：矿难的时候不到 600 块钱收的，就是图便宜，后面发现我好像用不到（就￥600 原价送给朋友了）</li>
+<li><strong>RX 5300</strong>：这个卡主要绝版了，一直舍不得出（但是为了入手 RTX 3060 回血，还是闲鱼上￥500元出掉了）</li>
+<li><strong>RX 580 残血</strong>：矿难闲鱼上 280 块钱收的 588，虽然是 2048SP，但是体质（ 99.7%）很棒，目前放在我的 i7-10700 主机里面使用</li>
+<li><strong>RX 580 满血</strong>：矿难闲鱼上 310 多块钱收的 588，是 2304SP，但是体质（ 99.4%），关键是橙色真的很棒，目前作为 PVE 下直通给黑苹果使用</li>
+<li><strong>RTX 3060</strong>：电竞判客牌子，有点三线，但是问题不大，可以给 Windows 主力 VM 做 Moonlight 远程使用，或者给直通打游戏使用也都是不错的。</li>
+<li><strong>Tesla P4：</strong>旧时王谢堂前燕，飞入寻常百姓家。以前过万的显卡 ，如今只要 400多元，原生支持 PVE 的  vGPU，功耗还很低，美滋滋。</li>
+<li><strong>GT 630：</strong>本来这张亮机卡也是放在 PVE 里面使用的，计划给黑群晖里面直通做解码使用。</li>
 </ul>
-<p>未来等 PVE 环境稳定的时候，到时候想再入手 1 个  RTX 3090 的 N 卡，但是这个前提是我得先用这套平台赚的钱来入手，我自己是不可能花高价入手这么贵的 N 卡的.对了 3090 我的理想价位是 3090 元收 3090，反正目前不着急入手显卡，就让奸商们继续屯着卡吧。</p>
-<h3 id="_6">内存<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693099514627.jpg"><img align="left" alt="" src="https://image.3001.net/images/20221125/16693099514627.jpg" width="500"/></a></p>
-<p>早期使用的 8 根镁光 2133Mhz 16GB内存，性价比确实高，但兼容性不是好，点亮系统都是一件不容易的事情。后面直接加钱换了 8 根三星 2400Mhz 32GB 内存，虽然没有啥性价比了，但兼容性真的很棒，而且 256GB 内存用于虚拟机多开的话，内存容量这块肯定不会是短板了。</p>
-<h3 id="_7">机箱<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
-<p>机箱选择了普普通通的爱国者机箱，100 多块钱的价格要啥自行车，关键是空间真的很大，放双路主板大小也很适合，加装了 10 个风扇的情况下，而风道不错的同时也比较低调内敛：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><input id="__tabbed_1_4" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">图片一</label><label for="__tabbed_1_2">图片二</label><label for="__tabbed_1_3">图片三</label><label for="__tabbed_1_4">图片四</label></div>
+<p>近期换显卡有点频繁，目前（2023年01月15日） PVE 最多同时：RX 580 满血 + RTX 3060 + Tesla P4 + GT 630 四张显卡使用，但是华南的 PCIe 容易有玄学问题，后面就暂时把 GT 630 拆下来了。</p>
+<p>未来等 PVE 环境稳定的时候并投入生产带来效益的时候，可能会入手 1 个RTX 3090 来替换掉目前的 RTX 3060</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><input id="__tabbed_1_4" name="__tabbed_1" type="radio"><input id="__tabbed_1_5" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">RX 580 满血一</label><label for="__tabbed_1_2">RX 580 满血二</label><label for="__tabbed_1_3">RX 580 满血三</label><label for="__tabbed_1_4">6600XT 与 3060</label><label for="__tabbed_1_5">6600XT 与 3060</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693079861802.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693079861802.jpg"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230115/16737940581711.jpg"><img alt="" src="https://image.3001.net/images/20230115/16737940581711.jpg"/></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693080198832.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693080198832.jpg"/></a> </p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230115/1673794060662.jpg"><img alt="" src="https://image.3001.net/images/20230115/1673794060662.jpg"/></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693080408236.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693080408236.jpg"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230115/16737940626850.jpg"><img alt="" src="https://image.3001.net/images/20230115/16737940626850.jpg"/></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230115/16737942237290.jpg"><img alt="" src="https://image.3001.net/images/20230115/16737942237290.jpg"/></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230115/167379434278.jpg"><img alt="" src="https://image.3001.net/images/20230115/167379434278.jpg"/></a></p>
+</div>
+</div>
+</input></input></input></input></input></div>
+<h3 id="_5">内存<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><input id="__tabbed_2_3" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">镁光 2133 内存</label><label for="__tabbed_2_2">三星 2400 内存</label><label for="__tabbed_2_3">三星 2400 内存</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693099514627.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693099514627.jpg"/></a></p>
+<p>早期使用的 8 根镁光 2133Mhz 16GB内存，性价比确实高，但兼容性不是好，点亮系统都是一件不容易的事情。</p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221211/16707528737107.jpg"><img alt="" src="https://image.3001.net/images/20221211/16707528737107.jpg"/></a> 
+后面直接加钱换了 8 根三星 2400Mhz 32GB 内存，虽然没有啥性价比了，但兼容性真的很棒。</p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221211/16707529236886.jpg"><img alt="" src="https://image.3001.net/images/20221211/16707529236886.jpg"/></a> 
+而且 256GB 内存用于虚拟机多开的话，内存容量这块肯定不会是短板了。</p>
+</div>
+</div>
+</input></input></input></div>
+<h3 id="_6">机箱<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<p>机箱早期选择的是普普通通的爱国者 T16 机箱，后面加钱上了追风者 PK620 机箱，真的很大很豪华，第一次买这么贵的机箱。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:7"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><input id="__tabbed_3_3" name="__tabbed_3" type="radio"><input id="__tabbed_3_4" name="__tabbed_3" type="radio"><input id="__tabbed_3_5" name="__tabbed_3" type="radio"><input id="__tabbed_3_6" name="__tabbed_3" type="radio"><input id="__tabbed_3_7" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">爱国者 T16 机箱</label><label for="__tabbed_3_2">追风者 PK620 机箱 一</label><label for="__tabbed_3_3">追风者 PK620 机箱 一</label><label for="__tabbed_3_4">追风者 PK620 机箱 二</label><label for="__tabbed_3_5">追风者 PK620 机箱 三</label><label for="__tabbed_3_6">追风者 PK620 机箱 四</label><label for="__tabbed_3_7">追风者 PK620 机箱 五</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693080408236.jpg"><img align="left" alt="" src="https://image.3001.net/images/20221125/16693080408236.jpg" width="50%"/></a>
+这个爱国者机箱很便宜，100 多块钱的价格要啥自行车，空间也不算小，可以放双路主板，风道也还算不错，但是 PCIe 卡槽部分设计不是很合理，也不支持显卡竖装，这就导致了有好几个 PCIe 接口无法重复利用起来。</p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693080488056.jpg"><img align="left" alt="" src="https://image.3001.net/images/20221125/16693080488056.jpg" width="50%"/></a>
+这个机箱最多可以安装 2 个主板，支持显卡竖装，支持安装很多个 HDD 硬盘，同时也支持安装很多个风扇，总之确实很大很豪华，走向也比较简单，我太爱这个机箱了。</p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693080488056.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693080488056.jpg"/></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693080488056.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693080488056.jpg"/></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693080488056.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693080488056.jpg"/></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693080488056.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693080488056.jpg"/></a></p>
 </div>
 <div class="tabbed-block">
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693080488056.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693080488056.jpg"/></a></p>
 </div>
 </div>
-</input></input></input></input></div>
-<h3 id="_8">硬盘<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
-<p>因为国光我的未来主要用来都开虚拟机使用的，所以为了确保硬盘的读写和容量不会出现短板，所以选择了多个大容量的 SSD 硬盘，得力于这主板原生就支持 3 个 NVME SSD，然后加了 1 个 PCIE 转 NVME 转接卡，相当于整整 4 个 NVME 1TB SSD，足够保证虚拟机多开的流程体验了：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">图片一</label><label for="__tabbed_2_2">图片二</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693091389809.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693091389809.jpg"/></a></p>
-</div>
-<div class="tabbed-block">
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/1669309152816.jpg"><img alt="" src="https://image.3001.net/images/20221125/1669309152816.jpg"/></a> </p>
-</div>
-</div>
-</input></input></div>
+</input></input></input></input></input></input></input></div>
+<h3 id="_7">硬盘<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<p>因为国光我的未来主要用来都开虚拟机使用的，所以为了确保硬盘的读写和容量不会出现短板，所以选择了多个大容量的 SSD 硬盘，得力于这主板原生就支持 3 个 NVME SSD，然后加了 1 个 PCIe 转 NVME 转接卡，相当于整整 4 个 NVME 1TB SSD，足够保证虚拟机多开的流程体验了：</p>
 <p>详细的硬盘划分及其用处我会在文章后面再展开说说。</p>
-<h2 id="_9">外设配置<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<h2 id="_8">外设配置<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<p>本次外设总价 <strong>￥10560</strong> 左右，下面是硬件的详细清单，价格为国光我当初入手的价格，仅供大家参考：</p>
 <table>
 <thead>
 <tr>
 <th align="left">硬件</th>
 <th align="left">型号</th>
+<th>价格</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td align="left">键盘1</td>
 <td align="left">IKBC Poker （茶轴）</td>
+<td>￥399</td>
 </tr>
 <tr>
 <td align="left">键盘2</td>
 <td align="left">红龙机械引领者 （红轴）</td>
+<td>￥200</td>
+</tr>
+<tr>
+<td align="left">键盘托</td>
+<td align="left">黑胡桃 60 键实木手托</td>
+<td>￥34.83</td>
 </tr>
 <tr>
 <td align="left">鼠标1</td>
 <td align="left">罗技 G102 （有线）</td>
+<td>￥89</td>
 </tr>
 <tr>
 <td align="left">鼠标2</td>
-<td align="left">罗技 G304（无线）</td>
+<td align="left">罗技 G502（有线）</td>
+<td>￥0（别人送的）</td>
+</tr>
+<tr>
+<td align="left">触控板</td>
+<td align="left">苹果妙控板新款</td>
+<td>￥899</td>
 </tr>
 <tr>
 <td align="left">显示器1</td>
 <td align="left">不知名品牌 4K 152Hz 28 寸 IPS 显示器</td>
+<td>￥2099</td>
 </tr>
 <tr>
 <td align="left">显示器2</td>
-<td align="left">不知名品牌 4K 60Hz 27 寸 IPS 显示器</td>
+<td align="left">不知名品牌 4K 60Hz 27 寸 IPS 器</td>
+<td>￥780</td>
+</tr>
+<tr>
+<td align="left">显示器3</td>
+<td align="left">LG 的 16比10 3840x2400 便携显示器 600尼特亮度</td>
+<td>￥599</td>
+</tr>
+<tr>
+<td align="left">显示器4</td>
+<td align="left">某不知名品牌 1920x1080 便携显示器 放机箱内部做副屏监控屏幕使用</td>
+<td>￥200</td>
+</tr>
+<tr>
+<td align="left">耳机</td>
+<td align="left">SONY MDR-XB950N1头戴式重低音降噪耳机</td>
+<td>￥1199</td>
+</tr>
+<tr>
+<td align="left">音响1</td>
+<td align="left">MINISO 名创优品无线蓝牙长条音响</td>
+<td>￥119</td>
+</tr>
+<tr>
+<td align="left">音响2</td>
+<td align="left">漫步者（EDIFIER）R12U 入门级微型桌面音响</td>
+<td>￥65</td>
+</tr>
+<tr>
+<td align="left">挂灯</td>
+<td align="left">米家显示器挂灯 X 2 个</td>
+<td>￥277</td>
+</tr>
+<tr>
+<td align="left">麦克风</td>
+<td align="left">SAMSON 山逊 GO MIC 网络授课麦克风</td>
+<td>￥278</td>
+</tr>
+<tr>
+<td align="left">桌搭</td>
+<td align="left">￥130 桌面微型显示器 + ￥69 WiFi 桌面时钟 + ￥32.8  拾音灯</td>
+<td>￥231.80</td>
+</tr>
+<tr>
+<td align="left">支架</td>
+<td align="left">￥89 乐歌显示器支架 + ￥81 空中视界 XD4372双屏显示器挂架</td>
+<td>￥170</td>
+</tr>
+<tr>
+<td align="left">硬盘盒</td>
+<td align="left">铁威马 D2-310 双盘位硬盘sata阵列盒（将下面 2 个硬盘组 Radi1 冗余冷备份）</td>
+<td>￥280</td>
+</tr>
+<tr>
+<td align="left">硬盘 1</td>
+<td align="left">海康威视联名 希捷酷鹰 ST4000VX000 4TB 垂直硬盘</td>
+<td>￥430</td>
+</tr>
+<tr>
+<td align="left">硬盘 2</td>
+<td align="left">希捷酷鹰 ST4000VX0007 4TB 垂直硬盘（咸鱼入手 大概率是矿盘）</td>
+<td>￥246</td>
+</tr>
+<tr>
+<td align="left">插座</td>
+<td align="left">￥40 公牛 GN-H5220 防雷 + ￥120元的3 个小米智能插座+ ￥80元的 2个得力</td>
+<td>￥240</td>
+</tr>
+<tr>
+<td align="left">升降桌</td>
+<td align="left">￥1216 双电机三节升降桌架 + ￥427 的 1米8长、0.8米宽、2.5cm 厚的胡桃木桌板</td>
+<td>￥1643</td>
+</tr>
+<tr>
+<td align="left">桌面增高架</td>
+<td align="left">120cmx3.5cmx13.5cm 胡桃木色桌面增高架</td>
+<td>￥126.47</td>
 </tr>
 </tbody>
 </table>
 <p>因为 PVE 下直通使用，想要 macOS 和  Windows 多开的话，一边 macOS 工作 一边 Windows 打游戏的话，所以双显示器、双键鼠是必须的（如果是蓝牙键盘多模切换也行），下面是一些配件图：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"/><div class="tabbed-labels"><label for="__tabbed_3_1">键鼠</label><label for="__tabbed_3_2">显示器</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:5"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"/><input id="__tabbed_4_2" name="__tabbed_4" type="radio"/><input id="__tabbed_4_3" name="__tabbed_4" type="radio"/><input id="__tabbed_4_4" name="__tabbed_4" type="radio"/><input id="__tabbed_4_5" name="__tabbed_4" type="radio"/><div class="tabbed-labels"><label for="__tabbed_4_1">键鼠</label><label for="__tabbed_4_2">显示器 场景一</label><label for="__tabbed_4_3">显示器 场景二</label><label for="__tabbed_4_4">显示器 场景三</label><label for="__tabbed_4_5">显示器 场景四</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693472183526.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693472183526.jpg"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230115/16737919871614.jpg"><img alt="" src="https://image.3001.net/images/20230115/16737919871614.jpg"/></a></p>
 </div>
 <div class="tabbed-block">
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20221125/16693471399776.jpg"><img alt="" src="https://image.3001.net/images/20221125/16693471399776.jpg"/></a> </p>
 </div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230115/16737931269429.jpg"><img alt="" src="https://image.3001.net/images/20230115/16737931269429.jpg"/></a></p>
 </div>
-</input></div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230115/16737932192980.jpg"><img alt="" src="https://image.3001.net/images/20230115/16737932192980.jpg"/></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://image.3001.net/images/20230115/16737921279210.jpg"><img alt="" src="https://image.3001.net/images/20230115/16737921279210.jpg"/></a></p>
+</div>
+</div>
+</div>
 <hr/>
 <div class="md-source-file">
 <small>
@@ -537,19 +1145,40 @@
 </div>
 </main>
 <footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: 主页" class="md-footer__link md-footer__link--prev" href="../.." rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                上一页
+              </span>
+              主页
+            </div>
+</div>
+</a>
+<a aria-label="下一页: 系统选择" class="md-footer__link md-footer__link--next" href="../2/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                下一页
+              </span>
+              系统选择
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
-<!-- Copyright and theme information -->
-<div class="md-footer-copyright">
-<div class="md-footer-copyright__highlight">
-                    Copyright ©  国光
-                </div>
-                
-                powered by
-                <a href="https://www.mkdocs.org" title="MkDocs">MkDocs</a>
-                and
-                <a href="https://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
-                    Material for MkDocs</a>
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright ©  国光
+    </div>
 </div>
 <div class="md-social">
 <a class="md-social__link" href="https://www.sqlsec.com" rel="noopener" target="_blank" title="国光">
@@ -563,7 +1192,7 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "search.suggest", "search.highlight", "search.share", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
 <script src="../../assets/javascripts/bundle.d691e9de.min.js"></script>
 <script async="async" data-fontsize="15px" data-mobile="false" data-random="false" data-text="OpenCore,Hackintosh,DSDT,SSDT,Kernel,Kexts,UEFI,NVRAM,BIOS,ACPI,Clover,AWAC,XOSI,Lilu.kext,VirtualSMC.kext,WhateverGreen.kext" id="click-show-text" src="https://html.sqlsec.com/click-show-text.min.js"></script>
 <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
